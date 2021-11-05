@@ -4,7 +4,9 @@ I'm Tim Sonner, I am a self taught iOS developer. My focus is on the latest Swif
 
 Sincerely, Tim Sonner
 
-![Iphone Simulator animation](../../RickAndMortyAPI/RickAndMortyAPI.gif)
+### What I've been working on:
+
+![Iphone Simulator animation](https://github.com/timsonner/RickAndMortyAPI/RickAndMortyAPI.gif)
 <!---
 This is the format for comments in the readme
 --->
