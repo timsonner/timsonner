@@ -4,6 +4,7 @@ I'm Tim Sonner, I am a self taught iOS developer. My focus is on the latest Swif
 
 Sincerely, Tim Sonner
 
+![Iphone Simulator animation](./RickAndMortyAPI.mp4)
 <!---
 This is the format for comments in the readme
 --->
