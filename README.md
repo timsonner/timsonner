@@ -12,3 +12,5 @@ Sincerely, Tim Sonner
 <!---
 This is the format for comments in the readme
 --->
+![Iphone Simulator Animation]
+https://github.com/timsonner/IPScanner/blob/7a32478bf45e20d154f55c73e2117432637e847e/IPScanner.gif
