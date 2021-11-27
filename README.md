@@ -2,7 +2,7 @@ Hi, there,
 
 I'm Tim Sonner. 
 
-Welcome to my portfolio, here you will find the projects I have been working on that showcase my skills and abilities as an iOS Developer. These projects focus on the latest versions of Swift 5.5, SwiftUI 3.0, XCode 13, and iOS 15. 
+Welcome to my portfolio, here you will find the projects I have been working on that showcase my skills and abilities as an iOS Developer. These projects focus on the latest versions of Swift 5.5, SwiftUI 3.0, XCode 13, and iOS 15. Lately I've been getting into Server Side Swift and I have some configs here to get an Amazon Linux 2 server running Vapor 4, and I'll be adding some Vapor projects soon.
 
 Sincerely, Tim Sonner
 
