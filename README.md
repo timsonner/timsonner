@@ -1,10 +1,9 @@
-Hi, there,
+Howdy Partner,
 
-I'm Tim Sonner. 
+I'm Tim Sonner, and this here is one of them new fangled interweb repos where I put my code when I'm not out ridin' horses or livin' what my latino friends call the "pura vida."
 
-Welcome to my portfolio, here you will find the projects I have been working on that showcase my skills and abilities as an iOS Developer. These projects focus on the latest versions of Swift 5.5, SwiftUI 3.0, XCode 13, and iOS 15. Lately I've been getting into Server Side Swift and I have some configs here to get an Amazon Linux 2 server running Vapor 4, and I'll be adding some Vapor projects soon.
-
-Sincerely, Tim Sonner
+Update (12/23/2021):
+I'm on a Svelte tangent at the moment, learning backend and a bit of frontend. iOS app development is on hold until I can sling some SvelteKit backends. I'm learning backend development because if ATS won't let me do it from my app, I'll do it on the server end and my app will just display data that ATS won't let me fetch. Thanks ATS for keeping things secure and making me learn backend development. Good thing about us millenials is we do what we want, not much stopping us when we set our minds to something. Also, since I'm having to learn Javascript, and I'm forced into diversification, I may have to go back and mess with Flutter a bit again. So new plan is Full Stack, multi platform. Just code, FTW.
 
 #### What I've been working on:
 <!---
