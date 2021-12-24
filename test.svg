@@ -10,13 +10,13 @@
                 body {
   width: 100%;
   color: white;
-  margin: 0 auto;
+  margin: 0 0;
   background-color: gray;
   padding: 20px 20px 20px 20px;
 }
                 p {
                 width: 100%;
-                font-size: 12px;
+                font-size: 2rem;
                 padding: 100px 100px 100px 100px;
                 background-color: black;
                 }
