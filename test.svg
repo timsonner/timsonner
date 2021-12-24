@@ -3,20 +3,23 @@
         <div xmlns="http://www.w3.org/1999/xhtml">
             <style>
             h1 {
-                color: red;
+                color: gray;
                 animation: mymove 2s infinite;
             }
-
+                
             @keyframes mymove {
                 from {
                     color: red;
                 }
                 to {
-                    color: yellow;
+                    color: green;
+                }
+                to {
+                    color: blue;
                 }
             }
             </style>
-            <h1>HELLO WORLD!</h1>
+            <h1>Just code, FTW!</h1>
         </div>
     </foreignObject>
 </svg>
