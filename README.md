@@ -11,7 +11,7 @@ I'm Tim Sonner, and this here is one of them new fangled interweb repos where I 
 <strong>
   Update (12/23/2021):
   </strong>
-I'm on a Svelte tangent at the moment, learning backend and a bit of frontend. iOS app development is on hold until I can sling some SvelteKit backends. I'm learning backend development because if ATS won't let me do it from my app, I'll do it on the server end and my app will just display data that ATS won't let me fetch. Thanks ATS for keeping things secure and making me learn backend development. Good thing about us millenials is we do what we want, not much stopping us when we set our minds to something. Also, since I'm having to learn Javascript, and I'm forced into diversification, I may have to go back and mess with Flutter a bit again. So new plan is Full Stack, multi platform. Just code, FTW.
+I'm on a Svelte tangent at the moment, learning backend and a bit of frontend. iOS app development is on hold until I get better at SvelteKit backends. I'm learning backend development because ATS is a pain in the deick. Thanks ATS for keeping things secure and making me learn backend development. Good thing about us millenials is we do what we want, not much stopping us when we set our minds to something. Also, since I'm having to learn Javascript, and I'm forced into diversification, I may have to go back and mess with Flutter and Python a bit again. So new plan is Full Stack, multi platform. Just code, FTW.
 </p>
 <p>  
 <table>
