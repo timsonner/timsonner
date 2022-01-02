@@ -6,6 +6,12 @@
 			I'm Tim Sonner, and this here is one of them new fangled interweb repos where I put my code
 			when I'm not out ridin' horses or livin' what my latino friends call the "pura vida."
 		</p>
+		<br>
+		<p>
+			<strong> Update (01/01/2022): </strong>
+			Its a new year, just added a Svelte app that searches the iTunes API, still in beta, sid, unstable, will catch your shit on fire, etc. I'm having fun with Svelte, I'll probably do the Rick and Morty API soon.
+			</p>
+		<br>
 		<p>
 			<strong> Update (12/23/2021): </strong>
 			I'm on a Svelte tangent at the moment, learning backend and a bit of frontend. iOS app development
