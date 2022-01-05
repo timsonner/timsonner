@@ -7,20 +7,18 @@
 			when I'm not out ridin' horses or livin' what my latino friends call the "pura vida."
 		</p>
 		<br>
+"The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name." - Laozi
+<br><br>
 		<p>
 			<strong> Update (01/01/2022): </strong>
-			Its a new year, just added a Svelte app that searches the iTunes API, still in beta, sid, unstable, will catch your shit on fire, etc. I'm having fun with Svelte, I'll probably do the Rick and Morty API soon.
+			Its a new year, just added a Svelte app that searches the iTunes API. I'm having fun with Svelte, I'll probably do the Rick and Morty API soon.
 			</p>
 		<br>
 		<p>
 			<strong> Update (12/23/2021): </strong>
-			I'm on a Svelte tangent at the moment, learning backend and a bit of frontend. iOS app development
-			is on hold until I get better at SvelteKit backends. I'm learning backend development because ATS
-			is a pain in the deick (pronounced "dee-ick", like the sounds bull elk make) and I'm gonna fetch
-			my data server side instead of in app. Good thing about us millenials is we do what we want, not
-			much stopping us when we set our minds to something. Also, since I'm having to learn Javascript,
-			and I'm forced into diversification, I may have to go back and mess with Flutter and Python a bit
-			again. So new plan is full stack, multi platform, muilti language. Just code, FTW.
+			I'm on a Svelte tangent at the moment, learning backend and a bit of frontend.
+			Good thing about us millenials is we do what we want, not
+			much stopping us when we set our minds to something. Just code, FTW.
 		</p>
 		<p />
 		<table>
