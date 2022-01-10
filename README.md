@@ -23,14 +23,14 @@
 				iOS Apps
 			</th>
 			<tr>
-				<th>rick-and-morty-api</th>
-				<th>ip-scanner</th>
+				<th><a href="https://github.com/timsonner/rick-and-morty-api/">rick-and-morty-api</a></th>
+				<th><a href="https://github.com/timsonner/ip-scanner/">ip-scanner</a></th>
 			</tr>
 			<tr>
 				<td>
 					<img
 						alt="RickAndMortyAPI"
-src="https://github.com/timsonner/RickAndMortyAPI/blob/7d96ffc0a6c96d7f5f0125b1df870f01da6fed96/RickAndMortyAPI.gif"
+src="https://github.com/timsonner/rick-and-morty-api/blob/main/RickAndMortyAPI.gif"
 						width="300"
 						height="500"
 					/>
@@ -38,7 +38,7 @@ src="https://github.com/timsonner/RickAndMortyAPI/blob/7d96ffc0a6c96d7f5f0125b1d
 				<td>
 					<img
 						alt="IPScanner"
-						src="https://github.com/timsonner/IPScanner/blob/7a32478bf45e20d154f55c73e2117432637e847e/IPScanner.gif"
+						src="https://github.com/timsonner/ip-scanner/blob/main/IPScanner.gif"
 						width="300"
 						height="500"
 					/>
