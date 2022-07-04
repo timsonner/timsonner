@@ -9,3 +9,10 @@ The road ahead is fraught with danger ðŸª§, code goblins lurk in the shadows ðŸ§
 
 ## About me:
 Ask my psycholgist, he'd describe me as "Vell, Tim is just zis guy, you know?" My name is Tim, I'm a software devloper, writer, philosopher, and human. I live on planet earth in a semi mountainous region of the North American continent know as 'Montana.' In all seriousness, this is my main GitHub repository, and here you'll find projects I've worked on.
+
+## Featured projects:  
+Both of these projects are SvelteKit apps demonstrating tailwind CSS (UnoCSS), reactive variables, fetch() requests to an API, and JSON parsing.  
+
+[svelte-pokedex @ vercel](https://svelte-pokedex-one.vercel.app) I'm pretty proud of the UX/UI on this project, it works great!
+
+[svelte-itunes @ vercel](https://svelte-itunes.vercel.app) Not a huge fan of this UX/UI, or the quality of the API itself. Meh.
