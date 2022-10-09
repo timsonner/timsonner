@@ -30,7 +30,6 @@ I'm a software devloper, writer, philosopher, and human. I live on planet earth 
 
 
 ## Featured projects:  
-Both of these projects are SvelteKit apps demonstrating tailwind CSS (UnoCSS), reactive variables, fetch() requests to an API, and JSON parsing.  
 
 [sveltekit-0auth-supabase hosted on Vercel](https://sveltekit-0auth-supabase.vercel.app/) Latest SvelteKit 10/08/2022, usage of 0auth with magic link or credentials. Supabase serverless database.
 
