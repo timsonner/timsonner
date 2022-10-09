@@ -32,6 +32,6 @@ I'm a software devloper, writer, philosopher, and human. I live on planet earth 
 ## Featured projects:  
 Both of these projects are SvelteKit apps demonstrating tailwind CSS (UnoCSS), reactive variables, fetch() requests to an API, and JSON parsing.  
 
-[sveltekit-0auth-supabase](https://sveltekit-0auth-supabase.vercel.app/dashboard) Latest SvelteKit 10/08/2022, usage of 0auth with magic link, and user auth via email and password.
+[sveltekit-0auth-supabase hosted on Vercel](https://sveltekit-0auth-supabase.vercel.app/) Latest SvelteKit 10/08/2022, usage of 0auth with magic link or credentials. Supabase serverless database.
 
-[svelte-pokedex @ vercel](https://svelte-pokedex-one.vercel.app) I'm pretty proud of the UX/UI on this project, it works great!
+[svelte-pokedex hosted on Vercel](https://svelte-pokedex-one.vercel.app) James Q Quick tutorial I followed a while back. I just like this project, needs to be updated.
