@@ -34,4 +34,4 @@ Both of these projects are SvelteKit apps demonstrating tailwind CSS (UnoCSS), r
 
 [sveltekit-0auth-supabase hosted on Vercel](https://sveltekit-0auth-supabase.vercel.app/) Latest SvelteKit 10/08/2022, usage of 0auth with magic link or credentials. Supabase serverless database.
 
-[svelte-pokedex hosted on Vercel](https://svelte-pokedex-one.vercel.app) James Q Quick tutorial I followed a while back. I just like this project, needs to be updated.
+[svelte-pokedex hosted on Vercel](https://svelte-pokedex-one.vercel.app) Based on a James Q Quick tutorial I followed a while back. I tweaked the UI a bit and added a card view. I just like this project, needs to be updated.
