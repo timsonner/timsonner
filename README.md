@@ -32,6 +32,6 @@ I'm a software devloper, writer, philosopher, and human. I live on planet earth 
 ## Featured projects:  
 Both of these projects are SvelteKit apps demonstrating tailwind CSS (UnoCSS), reactive variables, fetch() requests to an API, and JSON parsing.  
 
-[svelte-pokedex @ vercel](https://svelte-pokedex-one.vercel.app) I'm pretty proud of the UX/UI on this project, it works great!
+[sveltekit-0auth-supabase](https://sveltekit-0auth-supabase.vercel.app/dashboard) Latest SvelteKit 10/08/2022, usage of 0auth with magic link, and user auth via email and password.
 
-[svelte-itunes @ vercel](https://svelte-itunes.vercel.app) Not a huge fan of this UX/UI, or the quality of the API itself. Meh.
+[svelte-pokedex @ vercel](https://svelte-pokedex-one.vercel.app) I'm pretty proud of the UX/UI on this project, it works great!
