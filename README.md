@@ -5,7 +5,7 @@
 The road ahead is fraught with danger 🪧, code trolls lurk in the shadows 🧌, bugs poke and prod relentlessly 🦟, and after midnight the swamp mist is so thick, you can't even see your gauntlet in front of your face 😶‍🌫️. It may look like a graveyard of half finished and dead projects, but I assure you, this is a land of enchantement and wonder 🤔. Sure, dangers abound plentifully, and sometimes the villagers taunt and throw rocks at you 🪨, but there are also unicorns 🦄, faries 🧚, swamp mermaids 🧜‍♀️, and kitty cats 🐈‍⬛, lots and lots of kitty cats, like I think the witches keep dropping them off somewhere nearby 🧙‍♀️. Anyway, I'll let you get back to your journey, farewell stranger, I hope you find what you're questing for.
 
 ## About
-I'm a software devloper, writer, philosopher, and human. I live on planet earth in a semi mountainous region of the North American continent know as 'Montana.' This is where you'll find projects I've worked on.
+Software Developer
 
 ## Skills
 
