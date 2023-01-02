@@ -17,7 +17,7 @@ Interest in red team software development and cybersecurity
 Detail-oriented and strong problem-solving skills  
 Commitment to ethical and responsible software development  
 
-## Projects
+## Projects // under construction 01/01/2023
 
 <!-- <h1 align="center">Projects</h1> -->
 
@@ -102,9 +102,3 @@ Commitment to ethical and responsible software development
 	
 </table>
 <hr/>
-
-## GitHub Statistics
-<a href="https://github.com/timsonner" align="left"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=timsonner&langs_count=10&title_color=0891b2&text_color=ffffff&icon_color=0891b2&bg_color=1c1917&hide_border=true&locale=en&custom_title=Top%20%Languages" alt="Top Languages" /></a>
-
-
-
