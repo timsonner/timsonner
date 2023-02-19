@@ -34,7 +34,15 @@ https://app.box.com/s/8matvs5l0gc8vkr4xfq3szdm7mc9o0ad
 
 https://www.windowscentral.com/how-stop-updates-installing-automatically-windows-10  
 
-https://www.youtube.com/watch?v=qA0YcYMRWyI
+https://www.youtube.com/watch?v=qA0YcYMRWyI  
+
+ // Most Important Network Penetration Testing Checklist  
+ 
+https://gbhackers.com/network-penetration-testing-checklist-examples/
+
+ // Active Directory Exploitation Cheat Sheet by S1ckB0y1337
+ 
+https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet  
 
  // How to use Markdown for writing technical documentation  
  
