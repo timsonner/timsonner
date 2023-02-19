@@ -1,5 +1,25 @@
 # Tim Sonner  
 
+Windows key from firmware:  
+
+    sudo strings /sys/firmware/acpi/tables/MSDM
+
+Add current user to vboxusers group:  
+
+    sudo usermod -a -G vboxusers $USER
+
+DefectDojo:  
+
+    git clone https://github.com/DefectDojo/django-DefectDojo &&  cd django-DefectDojo
+    sudo apt install docker-compose
+    sudo ./dc-build.sh
+    sudo ./dc-up.sh postgres-redis 
+    docker-compose logs initializer | grep "Admin password:"
+
+OpenVAS:  
+
+    systemctl start redis-server@openvas.service
+
 Taiyaki sriracha disrupt iPhone pop-up. Banjo keytar etsy craft beer, tonx sus narwhal raw denim lumbersexual stumptown. Tilde live-edge freegan keffiyeh, four dollar toast mukbang big mood XOXO shabby chic adaptogen sartorial street art. Jean shorts praxis iceland taiyaki portland swag ethical disrupt twee shoreditch. Put a bird on it gatekeep tilde prism, narwhal same tattooed truffaut mlkshk four loko artisan locavore hella beard. Jianbing truffaut organic pour-over cronut keffiyeh gatekeep stumptown paleo godard.
 
 Poke seitan unicorn waistcoat big mood, PBR&B cold-pressed raw denim activated charcoal jianbing vegan DSA. Narwhal fashion axe cardigan flannel. Fam small batch pabst four loko tilde neutra lomo palo santo. Pinterest skateboard tumeric farm-to-table chillwave, tote bag authentic sustainable palo santo bitters organic fixie. Typewriter glossier sustainable tofu, gochujang cliche letterpress intelligentsia subway tile kitsch kogi succulents tote bag. Listicle whatever skateboard man bun selfies sus kombucha yuccie selvage shaman dreamcatcher mumblecore.
@@ -12,7 +32,7 @@ Brooklyn kickstarter hot chicken vinyl taiyaki. Tonx DIY swag church-key waistco
 
 Dummy text? More like dummy thicc text, amirite? 
 
-## Projects // under construction 01/01/2023
+## Projects
 
 <!-- <h1 align="center">Projects</h1> -->
 
