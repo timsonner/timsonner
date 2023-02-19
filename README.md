@@ -1,14 +1,17 @@
 # Tim Sonner  
-
-Windows key from firmware:  
+ // Firefox: 
+ 
+    curl -L -o firefox-latest.exe "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"  
+    
+ // Windows key from firmware:  
 
     sudo strings /sys/firmware/acpi/tables/MSDM
 
-Add current user to vboxusers group:  
+ // Add current user to vboxusers group:  
 
     sudo usermod -a -G vboxusers $USER
 
-DefectDojo:  
+ // DefectDojo:  
 
     git clone https://github.com/DefectDojo/django-DefectDojo &&  cd django-DefectDojo
     sudo apt install docker-compose
@@ -16,9 +19,19 @@ DefectDojo:
     sudo ./dc-up.sh postgres-redis 
     docker-compose logs initializer | grep "Admin password:"
 
-OpenVAS:  
+ // OpenVAS:  
 
     systemctl start redis-server@openvas.service
+
+ // REMnux download: remnux-v7-focal-virtualbox.ova  
+
+https://app.box.com/s/8matvs5l0gc8vkr4xfq3szdm7mc9o0ad
+
+ // Malware analysis sandboxing:  
+
+https://www.windowscentral.com/how-stop-updates-installing-automatically-windows-10  
+
+https://www.youtube.com/watch?v=qA0YcYMRWyI
 
 Taiyaki sriracha disrupt iPhone pop-up. Banjo keytar etsy craft beer, tonx sus narwhal raw denim lumbersexual stumptown. Tilde live-edge freegan keffiyeh, four dollar toast mukbang big mood XOXO shabby chic adaptogen sartorial street art. Jean shorts praxis iceland taiyaki portland swag ethical disrupt twee shoreditch. Put a bird on it gatekeep tilde prism, narwhal same tattooed truffaut mlkshk four loko artisan locavore hella beard. Jianbing truffaut organic pour-over cronut keffiyeh gatekeep stumptown paleo godard.
 
@@ -31,6 +44,8 @@ Lyft sartorial glossier, chartreuse post-ironic palo santo gentrify. La croix pa
 Brooklyn kickstarter hot chicken vinyl taiyaki. Tonx DIY swag church-key waistcoat messenger bag fixie. Letterpress truffaut forage salvia, kale chips shaman tofu master cleanse migas fixie. Cronut keytar banjo af fixie helvetica food truck roof party bespoke. Yes plz fanny pack blog tote bag schlitz authentic ugh 8-bit hella organic. Organic seitan knausgaard flannel fam.
 
 Dummy text? More like dummy thicc text, amirite? 
+
+https://hipsum.co/
 
 ## Projects
 
