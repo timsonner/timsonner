@@ -3,9 +3,14 @@
  
     curl -L -o firefox-latest.exe "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"  
     
- // Windows key from firmware:  
+ // Windows key from firmware/BIOS:  
+ 
+Linux...  
 
-    sudo strings /sys/firmware/acpi/tables/MSDM
+    sudo strings /sys/firmware/acpi/tables/MSDM  
+Windows...  
+
+    Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
 
  // Add current user to vboxusers group:  
 
