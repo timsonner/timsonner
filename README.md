@@ -49,6 +49,10 @@ https://gbhackers.com/network-penetration-testing-checklist-examples/
  
 https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet  
 
+ // NFS: The Deep Dive into Vulnerability Assessment and Exploitation Techniques  
+ 
+ https://medium.com/@Parag_Bagul/nfs-the-deep-dive-into-vulnerability-assessment-and-exploitation-techniques-41f19a380217
+
  // How to use Markdown for writing technical documentation  
  
 https://experienceleague.adobe.com/docs/contributor/contributor-guide/writing-essentials/markdown.html?lang=en
