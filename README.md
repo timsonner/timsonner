@@ -28,6 +28,24 @@ Windows...
 
     systemctl start redis-server@openvas.service
     
+ // Connect to wifi:
+     
+    iwconfig
+
+    sudo ifconfig <INTERFACE> up
+
+    sudo iwlist <INTERFACE> s | grep 'Cell\|Quality\|ESSID\|IEEE'
+
+    sudo wpa_passphrase <ESSID> <PASSWORD> > /etc/wpa_supplicant.conf
+
+    cat /etc/wpa_supplicant.conf
+
+    wpa_supplicant -B -i <INTERFACE> -c /etc/wpa_supplicant.conf -D <driver>
+
+    sudo iwconfig essid <ESSID>
+
+    sudo dhclient wlp3s0
+    
  // DRAKVUF® Black-box Binary Analysis System  
  https://github.com/tklengyel/drakvuf
 
