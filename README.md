@@ -46,6 +46,9 @@ Windows...
 
     sudo dhclient wlp3s0
     
+ // Unzip...  
+     unxz -v <Path to image>.img.xz  
+ 
  // DRAKVUF® Black-box Binary Analysis System  
  https://github.com/tklengyel/drakvuf
 
