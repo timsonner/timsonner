@@ -1,4 +1,9 @@
 # Tim Sonner  
+
+ // Derived data...  
+ 
+     rm -rf ~/Library/Developer/Xcode/DerivedData/*  
+     
  // Firefox: 
  
     curl -L -o firefox-latest.exe "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"  
