@@ -4,7 +4,7 @@
  
      rm -rf ~/Library/Developer/Xcode/DerivedData/*  
      
- // Firefox: 
+ // Firefox for Windows: 
  
     curl -L -o firefox-latest.exe "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"  
     
@@ -12,7 +12,8 @@
  
 Linux...  
 
-    sudo strings /sys/firmware/acpi/tables/MSDM  
+    sudo strings /sys/firmware/acpi/tables/MSDM
+    
 Windows...  
 
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
@@ -30,8 +31,25 @@ Windows...
     docker-compose logs initializer | grep "Admin password:"
 
  // OpenVAS:  
-
-    systemctl start redis-server@openvas.service
+    
+    sudo apt install openvas nsis postgresql
+    sudo service postgresql start
+    sudo systemctl start redis-server@openvas.service
+    sudo runuser -u postgres -- /usr/share/gvm/create-postgresql-database
+    sudo runuser -u _gvm -- gvmd --create-user=<name> --password=<password>
+    sudo runuser -u _gvm -- greenbone-nvt-sync
+    sudo runuser -u _gvm -- greenbone-feed-sync --type SCAP
+    sudo runuser -u _gvm -- greenbone-feed-sync --type CERT
+    sudo runuser -u _gvm -- greenbone-feed-sync --type GVMD_DATA
+    sudo runuser -u _gvm -- gvm-manage-certs -a -f
+    sudo gvm-check-setup 
+    sudo chmod 666 /var/log/gvm/openvas.log
+    sudo gvm-setup
+    sudo runuser -u _gvm -- gvmd --user=admin --new-password=<password>
+    sudo gvm-start
+    sudo gvm-stop
+    sudo gvm-start
+    sudo gvm-setup
     
  // Connect to wifi:
      
