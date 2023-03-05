@@ -70,7 +70,13 @@ Windows...
     sudo dhclient wlp3s0
     
  // Unzip...  
+ 
      unxz -v <Path to image>.img.xz  
+     
+ // Lokinet  
+ 
+     sudo curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg  
+     echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list
  
  // DRAKVUF® Black-box Binary Analysis System  
  https://github.com/tklengyel/drakvuf
