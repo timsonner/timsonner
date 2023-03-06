@@ -52,7 +52,12 @@ Windows...
     sudo gvm-start
     sudo gvm-stop
     sudo gvm-start
-    sudo gvm-setup
+    sudo gvm-setup  
+    
+ Ubuntu Specific...  
+ 
+    sudo ln -s /usr/lib64/libopenvas_misc.so.21 /lib/x86_64-linux-gnu/
+    sudo ln -s /usr/lib64/libopenvas_nasl.so.21 /lib/x86_64-linux-gnu/
     
  // Connect to wifi:
      
