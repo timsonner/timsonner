@@ -1,9 +1,31 @@
 # Tim Sonner  
 
- // Gists  
+  // Gists  
  
  https://gist.github.com/timsonner  
  
+ // Join to domain  
+ 
+     Add-Computer -DomainName <domain name>
+	
+ // Set primary and secondary DNS  
+ 
+     Get-NetAdapter  
+     Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddresses ("8.8.8.8","8.8.4.4")  
+
+ // Network connections dialog  
+ 
+     ncpa.cpl
+     
+ // Advanced Rename  
+ 
+     sysdm.cpl  
+     
+ // Service tag  
+ 
+     wmic bios     
+ 
+
  // Right-Click context menu - Windows 11  
  
      reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
