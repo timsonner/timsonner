@@ -7,6 +7,11 @@
  // Join to domain  
  
      Add-Computer -DomainName <domain name>
+     
+ // Get current domain  
+ 
+     (Get-WmiObject Win32_ComputerSystem).Domain
+
 	
  // Set primary and secondary DNS  
  
