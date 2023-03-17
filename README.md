@@ -35,6 +35,11 @@
  
      reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
  
+ // Change NIC mac address  
+ 
+     Get-NetAdapter
+     Set-NetAdapter -Name "<adapter name>" -MacAddress "<new MAC address>"  
+ 
  // Clear derived data...  
  
      rm -rf ~/Library/Developer/Xcode/DerivedData/*  
@@ -116,20 +121,7 @@ Windows...
  // Lokinet  
  
      sudo curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg  
-     echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list
- 
- // DRAKVUF® Black-box Binary Analysis System  
- https://github.com/tklengyel/drakvuf
-
- // REMnux download: remnux-v7-focal-virtualbox.ova  
-
-https://app.box.com/s/8matvs5l0gc8vkr4xfq3szdm7mc9o0ad
-
- // Malware analysis sandboxing:  
-
-https://www.windowscentral.com/how-stop-updates-installing-automatically-windows-10  
-
-https://www.youtube.com/watch?v=qA0YcYMRWyI  
+     echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list 
 
  // Most Important Network Penetration Testing Checklist  
  
