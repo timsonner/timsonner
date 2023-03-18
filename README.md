@@ -4,24 +4,24 @@
  
  https://gist.github.com/timsonner  
 	
- // Set primary and secondary DNS  
+ // Set primary and secondary DNS - Windows
  
      Get-NetAdapter  
      Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddresses ("8.8.8.8","8.8.4.4")  
      
- // Join to domain  
+ // Join to domain - Windows
  
      Add-Computer -DomainName <domain name>
      
- // Get current domain  
+ // Get current domain - Windows
  
      (Get-WmiObject Win32_ComputerSystem).Domain
 
- // Network connections dialog  
+ // Network connections dialog - Windows
  
      ncpa.cpl
      
- // Advanced Rename  
+ // Advanced Rename - Windows
  
      sysdm.cpl  
  
@@ -45,14 +45,14 @@
     sudo ip link set <interface> address <new MAC address>
     sudo ip link set <interface> up
 
- // Change NIC mac address - Mac
+ // Change NIC mac address - MacOS
 
     ifconfig
     sudo ifconfig <interface> down
     sudo ifconfig <interface> hw ether <new MAC address>
     sudo ifconfig <interface> up
  
- // Clear derived data for Xcode...  
+ // Clear derived data for Xcode - MacOS  
  
      rm -rf ~/Library/Developer/Xcode/DerivedData/*  
      
@@ -68,11 +68,11 @@
 
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
 
- // Add current user to vboxusers group:  
+ // Add current user to vboxusers group - Linux
 
     sudo usermod -a -G vboxusers $USER
 
- // DefectDojo:  
+ // DefectDojo - Linux
 
     git clone https://github.com/DefectDojo/django-DefectDojo &&  cd django-DefectDojo
     sudo apt install docker-compose
@@ -80,7 +80,7 @@
     sudo ./dc-up.sh postgres-redis 
     docker-compose logs initializer | grep "Admin password:"
 
- // OpenVAS:  
+ // OpenVAS - Debian
     
     sudo apt install openvas nsis postgresql
     sudo service postgresql start
@@ -99,9 +99,22 @@
     sudo gvm-start
     sudo gvm-stop
     sudo gvm-start
-    sudo gvm-setup  
+    sudo gvm-setup
     
- // Connect to wifi:
+ // Connect to Ethernet - Linux
+
+    ip link list
+    ip link set <interface> up
+    ip link show dev enp2s0
+
+// Connect to wireless Method 1 - Linux
+
+    iwctl
+    station wlan0 scan
+    station wlan0 get-networks
+    station wlan0 connect "<Network ESSID>"
+    
+ // Connect to wireless Method 2 - Linux
      
     iwconfig
     sudo ifconfig <INTERFACE> up
@@ -127,7 +140,7 @@
     md5 filename
     shasum -a 256 filename
 
-// Lokinet  
+// Lokinet - Linux
  
      sudo curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg  
      echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list 
@@ -140,7 +153,7 @@
  
      reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
     
- // Unzip a Linux image 
+ // Unzip a disc image - Linux
  
      unxz -v <Path to image>.img.xz  
      
