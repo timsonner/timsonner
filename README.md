@@ -162,7 +162,7 @@
 Most Important Network Penetration Testing Checklist  
 https://gbhackers.com/network-penetration-testing-checklist-examples/
 
-Active Directory Exploitation Cheat Sheet by S1ckB0y1337
+Active Directory Exploitation Cheat Sheet by S1ckB0y1337  
 https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet  
 
 Attacking Active Directory: 0 to 0.9  
