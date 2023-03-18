@@ -3,7 +3,12 @@
   // Gists  
  
  https://gist.github.com/timsonner  
+	
+ // Set primary and secondary DNS  
  
+     Get-NetAdapter  
+     Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddresses ("8.8.8.8","8.8.4.4")  
+     
  // Join to domain  
  
      Add-Computer -DomainName <domain name>
@@ -11,11 +16,6 @@
  // Get current domain  
  
      (Get-WmiObject Win32_ComputerSystem).Domain
-	
- // Set primary and secondary DNS  
- 
-     Get-NetAdapter  
-     Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddresses ("8.8.8.8","8.8.4.4")  
 
  // Network connections dialog  
  
@@ -25,7 +25,7 @@
  
      sysdm.cpl  
  
- // Linux command equivalents
+ // Linux command equivalents - Windows
 
     copy
     where /r c:\ foo.bar
@@ -136,6 +136,10 @@ https://gbhackers.com/network-penetration-testing-checklist-examples/
  // Active Directory Exploitation Cheat Sheet by S1ckB0y1337
  
 https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet  
+
+ // Attacking Active Directory: 0 to 0.9  
+
+https://zer1t0.gitlab.io/posts/attacking_ad/
 
  // NFS: The Deep Dive into Vulnerability Assessment and Exploitation Techniques  
  
