@@ -112,6 +112,26 @@
     sudo iwconfig essid <ESSID>
     sudo dhclient wlp3s0
 
+ // Sha5 - Windows  
+ 
+    CertUtil -hashfile filename MD5
+    CertUtil -hashfile filename SHA256
+
+// Sha5 - Linux  
+
+    md5sum filename
+    sha256sum filename
+
+// Sha5 - MacOS  
+
+    md5 filename
+    shasum -a 256 filename
+
+// Lokinet  
+ 
+     sudo curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg  
+     echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list 
+
 // Service tag - Windows
  
      wmic bios     
@@ -120,33 +140,28 @@
  
      reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
     
- // Unzip...  
+ // Unzip a Linux image 
  
      unxz -v <Path to image>.img.xz  
      
- // Lokinet  
+ // Links  
  
-     sudo curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg  
-     echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list 
-
- // Most Important Network Penetration Testing Checklist  
- 
+Most Important Network Penetration Testing Checklist  
 https://gbhackers.com/network-penetration-testing-checklist-examples/
 
- // Active Directory Exploitation Cheat Sheet by S1ckB0y1337
- 
+Active Directory Exploitation Cheat Sheet by S1ckB0y1337
 https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet  
 
- // Attacking Active Directory: 0 to 0.9  
-
+Attacking Active Directory: 0 to 0.9  
 https://zer1t0.gitlab.io/posts/attacking_ad/
 
- // NFS: The Deep Dive into Vulnerability Assessment and Exploitation Techniques  
+NFS: The Deep Dive into Vulnerability Assessment and Exploitation Techniques  
+https://medium.com/@Parag_Bagul/nfs-the-deep-dive-into-vulnerability-assessment-and-exploitation-techniques-41f19a380217
  
- https://medium.com/@Parag_Bagul/nfs-the-deep-dive-into-vulnerability-assessment-and-exploitation-techniques-41f19a380217
+Malware Anti-VM Tricks  
+https://www.cynet.com/attack-techniques-hands-on/malware-anti-vm-techniques/
 
- // How to use Markdown for writing technical documentation  
- 
+How to use Markdown for writing technical documentation  
 https://experienceleague.adobe.com/docs/contributor/contributor-guide/writing-essentials/markdown.html?lang=en
 
 ### // RegEx match open tags except XHTML self-contained tags  
