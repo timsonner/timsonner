@@ -72,7 +72,7 @@
 
     sudo usermod -a -G vboxusers $USER
 
- // DefectDojo - Linux
+ // DefectDojo Setup - Linux
 
     git clone https://github.com/DefectDojo/django-DefectDojo &&  cd django-DefectDojo
     sudo apt install docker-compose
@@ -80,7 +80,7 @@
     sudo ./dc-up.sh postgres-redis 
     docker-compose logs initializer | grep "Admin password:"
 
- // OpenVAS - Debian
+ // OpenVAS Setup - Debian
     
     sudo apt install openvas nsis postgresql
     sudo service postgresql start
