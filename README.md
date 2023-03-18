@@ -11,7 +11,6 @@
  // Get current domain  
  
      (Get-WmiObject Win32_ComputerSystem).Domain
-
 	
  // Set primary and secondary DNS  
  
@@ -25,22 +24,35 @@
  // Advanced Rename  
  
      sysdm.cpl  
-     
- // Service tag  
  
-     wmic bios     
- 
+ // Linux command equivalents
 
- // Right-Click context menu - Windows 11  
+    copy
+    where /r c:\ foo.bar
+    type
+    type > foo.bar
+    net start foo
  
-     reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
- 
- // Change NIC mac address  
+ // Change NIC mac address - Windows  
  
      Get-NetAdapter
      Set-NetAdapter -Name "<adapter name>" -MacAddress "<new MAC address>"  
+     
+ // Change NIC mac address - Linux
+
+    sudo ip link show
+    sudo ip link set <interface> down
+    sudo ip link set <interface> address <new MAC address>
+    sudo ip link set <interface> up
+
+ // Change NIC mac address - Mac
+
+    ifconfig
+    sudo ifconfig <interface> down
+    sudo ifconfig <interface> hw ether <new MAC address>
+    sudo ifconfig <interface> up
  
- // Clear derived data...  
+ // Clear derived data for Xcode...  
  
      rm -rf ~/Library/Developer/Xcode/DerivedData/*  
      
@@ -48,13 +60,11 @@
  
     curl -L -o firefox-latest.exe "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"  
     
- // Windows key from firmware/BIOS:  
- 
-Linux...  
+ // Windows key from firmware/BIOS - Linux 
 
     sudo strings /sys/firmware/acpi/tables/MSDM
     
-Windows...  
+ // Windows key from firmware/BIOS - Windows
 
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
 
@@ -91,28 +101,24 @@ Windows...
     sudo gvm-start
     sudo gvm-setup  
     
- Ubuntu Specific...  
- 
-    sudo ln -s /usr/lib64/libopenvas_misc.so.21 /lib/x86_64-linux-gnu/
-    sudo ln -s /usr/lib64/libopenvas_nasl.so.21 /lib/x86_64-linux-gnu/
-    
  // Connect to wifi:
      
     iwconfig
-
     sudo ifconfig <INTERFACE> up
-
     sudo iwlist <INTERFACE> s | grep 'Cell\|Quality\|ESSID\|IEEE'
-
     sudo wpa_passphrase <ESSID> <PASSWORD> > /etc/wpa_supplicant.conf
-
     cat /etc/wpa_supplicant.conf
-
     wpa_supplicant -B -i <INTERFACE> -c /etc/wpa_supplicant.conf -D <driver>
-
     sudo iwconfig essid <ESSID>
-
     sudo dhclient wlp3s0
+
+// Service tag - Windows
+ 
+     wmic bios     
+
+ // Right-Click context menu - Windows 11  
+ 
+     reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
     
  // Unzip...  
  
