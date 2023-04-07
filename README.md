@@ -64,9 +64,13 @@
 
     sudo strings /sys/firmware/acpi/tables/MSDM
     
- // Windows key from firmware/BIOS - Windows
+ // Windows key from firmware/BIOS - Windows 11
 
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
+
+ // Windows key from firmware/BIOS - Windows 10  
+ 
+    Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform"
 
  // Add current user to vboxusers group - Linux
 
