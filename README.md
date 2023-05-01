@@ -156,6 +156,10 @@
  // Unzip a disc image - Linux
  
      unxz -v <Path to image>.img.xz  
+ // Wine64 - MacOS
+ 
+     brew install wine-stable
+     WINEARCH=win64 WINEPREFIX=~/.wine64 winecfg  
      
  // Links  
  
