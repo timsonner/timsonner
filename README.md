@@ -64,11 +64,11 @@
 
     sudo strings /sys/firmware/acpi/tables/MSDM
     
- // Windows key from firmware/BIOS - Windows 11
+ // Windows key from Registry - Windows 11
 
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
 
- // Windows key from firmware/BIOS - Windows 10  
+ // Windows key from Registry - Windows 10  
  
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform"
 
@@ -129,17 +129,17 @@
     sudo iwconfig essid <ESSID>
     sudo dhclient wlp3s0
 
- // Sha5 - Windows  
+ // Check hash - Windows  
  
     CertUtil -hashfile filename MD5
     CertUtil -hashfile filename SHA256
 
-// Sha5 - Linux  
+// Check hash - Linux  
 
     md5sum filename
     sha256sum filename
 
-// Sha5 - MacOS  
+// Check hash - MacOS  
 
     md5 filename
     shasum -a 256 filename
