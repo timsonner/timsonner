@@ -7,7 +7,7 @@
  // Set primary and secondary DNS - Windows
  
      Get-NetAdapter  
-     Set-DnsClientServerAddress -InterfaceIndex 5 -ServerAddresses ("8.8.8.8","8.8.4.4")  
+     Set-DnsClientServerAddress -InterfaceIndex <Interface Number> -ServerAddresses ("8.8.8.8","8.8.4.4")  
      
  // Join to domain - Windows
  
