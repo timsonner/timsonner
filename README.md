@@ -1,8 +1,20 @@
 # GitHub Homepage
 
   // Gists  
- 
+  
  https://gist.github.com/timsonner  
+ 
+ // New Gist
+ 
+ https://gist.github.com  
+ 
+ // Find Apple Developer Certificate - MacOS  
+ 
+     security find-identity -v -p codesigning
+ 
+ // Sign file with Developer Certificate - MacOS
+ 
+     codesign -s "Apple Development: <NAME> (<XXXXXXXXXX>)" <Filename>
 	
  // Set primary and secondary DNS - Windows
  
@@ -29,14 +41,14 @@
 
     copy
     where /r c:\ foo.bar
-    type
+    type <File to cat>
     type > foo.bar
     net start foo
  
  // Change NIC mac address - Windows  
  
      Get-NetAdapter
-     Set-NetAdapter -Name "<adapter name>" -MacAddress "<new MAC address>"  
+     Set-NetAdapter -Name "<Adapter name>" -MacAddress "<New MAC address>"  
      
  // Change NIC mac address - Linux
 
