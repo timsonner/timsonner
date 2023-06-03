@@ -14,7 +14,11 @@
      
  // Connect to SMB share on Windows host - Linux  
  
-     smbclient //<hostname or ip>/Foo$ -U <domain/user>
+     smbclient //<hostname or ip>/Foo$ -U <domain/user>  
+     
+ // Mount SMB share - Linux  
+ 
+     mount -t cifs //<remote_host>/<share_name> ~/mnt/share -o username=<username>
  
  // Find Apple Developer Certificate - MacOS  
  
