@@ -8,6 +8,10 @@
  
  https://gist.github.com  
  
+ // List domain users - Windows  
+ 
+     net user /domain
+ 
  // Find SMB shares on Windows host - Linux  
  
      smbclient -L <hostname or ip> -U <domain/user>
