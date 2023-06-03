@@ -14,8 +14,20 @@
  
  // Sign file with Developer Certificate - MacOS
  
-     codesign -s "Apple Development: <NAME> (<XXXXXXXXXX>)" <Filename>
-	
+     codesign -s "Apple Development: <Name> (<XXXXXXXXXX>)" foo.dylib
+     
+ // Build Dynamic Library - GoLang
+ 
+     go build -o foo.dylib -buildmode=c-shared -ldflags "-linkmode=external -w" foo.go  
+     
+ // Build Dynamic Library - C  
+ 
+     gcc -dynamiclib foo.c -o foo.dylib  
+ 
+ // Strip symbols from build process - GoLang
+ 
+     go build -ldflags="-s -w" foo.go  
+     
  // Set primary and secondary DNS - Windows
  
      Get-NetAdapter  
