@@ -8,6 +8,14 @@
  
  https://gist.github.com  
  
+ // Find SMB shares on Windows host - Linux  
+ 
+     smbclient -L <hostname or ip> -U <domain/user>
+     
+ // Connect to SMB share on Windows host - Linux  
+ 
+     smbclient //<hostname or ip>/Foo$ -U <domain/user>
+ 
  // Find Apple Developer Certificate - MacOS  
  
      security find-identity -v -p codesigning
