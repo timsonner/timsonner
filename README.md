@@ -8,6 +8,18 @@
  
  https://gist.github.com  
  
+ // Find processes running on a port - Windows  
+ 
+     netstat -ano | findstr :<port_number> 
+    
+ // Get info of process - Windows  
+ 
+     tasklist /FI "PID eq <process_id>"  
+     
+ // Get location of process - Windows  
+ 
+     wmic process where ProcessId=<process_id> get ExecutablePath
+ 
  // List domain users - Windows  
  
      net user /domain
