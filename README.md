@@ -10,7 +10,7 @@
  
  // Find processes running on a port - Windows  
  
-     netstat -ano | findstr :<port_number> 
+     netstat -ano | findstr <port_number> 
     
  // Get info of process - Windows  
  
@@ -231,7 +231,7 @@ Malware Anti-VM Tricks
 https://www.cynet.com/attack-techniques-hands-on/malware-anti-vm-techniques/
 
 How to use Markdown for writing technical documentation  
-https://experienceleague.adobe.com/docs/contributor/contributor-guide/writing-essentials/markdown.html?lang=en
+https://experienceleague.adobe.com/docs/contributor/contributor-guide/writing-essentials/markdown.html?lang=en  
 
 ### // RegEx match open tags except XHTML self-contained tags  
  
