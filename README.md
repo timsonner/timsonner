@@ -31,6 +31,10 @@
  // Connect to SMB share on Windows host - Linux  
  
      smbclient //<hostname or ip>/Foo$ -U <domain/user>  
+
+ // Recursively download SMB share - Linux  
+
+     smbget -R smb://<hostname>/anonymous
      
  // Mount SMB share - Linux  
  
@@ -248,13 +252,13 @@
 ## Scan types  
 
 -sV: Identify services/versions scan.  
--sS: Syn "Half-open" aka "Stealth" scan 
+-sS: Syn "Half-open" aka "Stealth" scan   
 -sU: UDP scan
--sT: TCP Connect scan
+-sT: TCP Connect scan  
 -sn: Disable port scan aka "Ping sweep"  
 -sL: Test scan "List" targets  
--sN: TCP Null (All flags set to null)
--sF: TCP FIN (FIN flag set to 1) 
+-sN: TCP Null (All flags set to null)  
+-sF: TCP FIN (FIN flag set to 1)  
 -sX: TCP Xmas (URG, PUSH, FIN flags set to 1)  
 -PS: TCP SYN Ping (SYN flag set tp 1)  
 -PA: TCP ACK Ping (ACK flag set to 1)  
@@ -282,8 +286,10 @@
     nmap localhost -p 1024-65535  
     nmap -T4 10.10.0-255.1-12
     nmap script=vuln  
-    nmap -R --dns-servers 192.168.6.1
-
+    nmap -R --dns-servers 192.168.6.1  
+    nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <ip>    
+    nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount <ip>  
+    
 -PS80,443,8080
     
 Script Help:  
