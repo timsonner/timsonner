@@ -155,8 +155,14 @@
     sudo gvm-start
     sudo gvm-stop
     sudo gvm-start
-    sudo gvm-setup
+    sudo gvm-setup  
     
+ // OpenVAS - Kali  
+
+    gvm-manage-certs -a -f  
+    runuser -u _gvm -- gvmd --get-users --verbose  
+    runuser -u _gvm -- gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value <user id>  
+     
  // Connect to Ethernet - Linux
 
     ip link list
