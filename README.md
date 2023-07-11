@@ -5,6 +5,10 @@
  https://gist.github.com/timsonner  
  
  // New Gist
+
+ // Generate shellcode for windows 64  
+
+     msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o shellcode.bin
  
  https://gist.github.com  
  
