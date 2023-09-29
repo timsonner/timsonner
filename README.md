@@ -78,6 +78,14 @@
  // Strip symbols from build process - GoLang
  
      go build -ldflags="-s -w" foo.go  
+
+ // Compile with all libraries necessary - GoLang  
+ 
+     GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -o go-gobserver  
+
+ // Initiate module for project - GoLang  
+ 
+     go mod init foo  
      
  // Set primary and secondary DNS - Windows
  
