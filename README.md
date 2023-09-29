@@ -268,7 +268,9 @@
 --badsum: Firewall check  
 -n: No DNS resolve  
 --dns-servers: Specify DNS servers  
--R: reverse-DNS lookup for all hosts (live/dead)
+-R: reverse-DNS lookup for all hosts (live/dead)  
+-S: Source IP
+-e: interface, such as tun1 or eth0
 
 ## Scan types  
 
@@ -312,10 +314,8 @@
     nmap -p 445 --script=smb-enum-shares.nse,smb-enum-users.nse <ip>    
     nmap -p 111 --script=nfs-ls,nfs-statfs,nfs-showmount <ip>  
     nmap --script=http-headers  
-    nmap --script=http-title
-    
-    
--PS80,443,8080
+    nmap --script=http-title  
+    nmap -S <fake source IP> -e tun1 -P0 -n <target IP>  
     
 Script Help:  
 nmap --script-help "smb-* and discovery"  
