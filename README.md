@@ -269,7 +269,7 @@
 -n: No DNS resolve  
 --dns-servers: Specify DNS servers  
 -R: reverse-DNS lookup for all hosts (live/dead)  
--S: Source IP
+-S: Source IP  
 -e: interface, such as tun1 or eth0
 
 ## Scan types  
