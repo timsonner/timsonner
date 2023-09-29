@@ -255,22 +255,21 @@
 -T\<int>: Timing  
 -p \<int>: Port  
 -p-: All ports  
--script=\<category or path to script>: Run script  
---script-help: Help on Script  
+-f: Fragment packets  
 -Pn: Disable ping scan  
--iR \<int>: Random IP 
+-iR \<int>: Random IP  
+-n: No DNS resolve  
+-R: reverse-DNS lookup for all hosts (live/dead)  
+-S: Source IP  
+-e: interface, such as tun1 or eth0  
+-script=\<category or path to script>: Run script  
 --script-updatedb: Update scripts.db  
 --script-help "<string>": Script help  
-  -f: Fragment packets  
 --mtu \<int>: Maximum transmission unit size  
 --data-length: Append random data to packet  
 --scan-delay <time>ms: Delay between packets  
 --badsum: Firewall check  
--n: No DNS resolve  
 --dns-servers: Specify DNS servers  
--R: reverse-DNS lookup for all hosts (live/dead)  
--S: Source IP  
--e: interface, such as tun1 or eth0
 
 ## Scan types  
 
