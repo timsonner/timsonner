@@ -280,7 +280,7 @@ mokutil --import MOK.der
 Create password for this MOK enrollment request.
 Reboot. Follow instructions to complete the MOK enrollment from UEFI console.
 
-# Install VirtuialBox extension pack  
+// Install VirtualBox extension pack  
 
 ```
 vboxmanage --version
