@@ -244,9 +244,9 @@
  
      unxz -v <Path to image>.img.xz  
 
- // VMware Linux "Cannot open /dev/vmmon: No such file or directory"  
+ // VMware - Linux "Cannot open /dev/vmmon: No such file or directory"  
  
-Generate key pair using openssl to sign vmmon and vmnet modules:  
+Generate key pair using openssl for VMware:  
 
 ```
 openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
@@ -259,13 +259,26 @@ Sign modules using generated key:
 /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmnet)
 ```
 
+// VirtualBox - "VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory."  
+Generate key pair using openssl for VirtualBox:  
+```
+openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VirtualBox/"
+```
+
+Sign modules using generated key:  
+
+```
+/usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxdrv)
+/usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxnetflt)
+/usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxnetadp)
+```
+
 Import public key to system's MOK list:  
 ```
-$mokutil --import MOK.der
+mokutil --import MOK.der
 ``` 
 Create password for this MOK enrollment request.
 Reboot. Follow instructions to complete the MOK enrollment from UEFI console.
-
 
 # Nmap notes  
 
