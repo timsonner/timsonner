@@ -280,6 +280,14 @@ mokutil --import MOK.der
 Create password for this MOK enrollment request.
 Reboot. Follow instructions to complete the MOK enrollment from UEFI console.
 
+# Install VirtuialBox extension pack  
+
+```
+vboxmanage --version
+curl https://download.virtualbox.org/virtualbox/<version number>/Oracle_VM_VirtualBox_Extension_Pack-<version number>.vbox-extpack
+vboxmanage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-<version-number>.vbox-extpack 
+```
+
 # Nmap notes  
 
 ## Switches  
