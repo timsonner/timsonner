@@ -287,12 +287,12 @@ vboxmanage --version
 curl https://download.virtualbox.org/virtualbox/<version number>/Oracle_VM_VirtualBox_Extension_Pack-<version number>.vbox-extpack
 vboxmanage extpack install --replace Oracle_VM_VirtualBox_Extension_Pack-<version-number>.vbox-extpack 
 ```
-# System hardware model - Linux  
+System hardware model - Linux  
 ```
 sudo dmidecode -t 1
 ```
 
-# Fix borked sound - Linux  
+Fix borked sound - Linux  
 ```
 alsa force-reload
 ```
