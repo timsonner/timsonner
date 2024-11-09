@@ -8,7 +8,10 @@
  
  https://gist.github.com  
 
-
+// PSExec64  
+```
+PsExec64.exe -s -i "\full\path\to\exe\create-kernel-service.exe"
+```
    
 // The Harvester  as Docker container  
 ```  
