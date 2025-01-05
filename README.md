@@ -460,13 +460,12 @@ Get-ADUser -Filter { ServicePrincipalName -ne "$null" } -Properties ServicePrinc
 
 // VMware - Linux "Cannot open /dev/vmmon: No such file or directory"  
  
-Generate key pair using openssl for VMware:  
-
+Generate key pair  
 ```
 openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
 ```
 
-Sign modules using generated key:
+Sign VMWare drivers using generated keys:
 ```
 /usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)
 
@@ -474,12 +473,13 @@ Sign modules using generated key:
 ```
 
 // VirtualBox - "VBoxNetAdpCtl: Error while adding new interface: failed to open /dev/vboxnetctl: No such file or directory."  
-Generate key pair using openssl for VirtualBox:  
+
+Generate key pair:  
 ```
 openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VirtualBox/"
 ```
 
-Sign modules using generated key:  
+Sign VirtualBox drivers  
 
 ```
 /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxdrv)
@@ -487,15 +487,36 @@ Sign modules using generated key:
 /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxnetadp)
 ```
 
+// Nvidia - nvidia-smi won't run  
+Generate key pair  
+```
+openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=Nvidia/"
+```
+// Nvidia sign drivers  
+```
+#!/bin/bash
+# Script to sign Nvidia kernel modules
+
+# To find the .ko files...
+# sudo find /lib/modules/$(uname -r) -type f -name '*nvidia*.ko'
+
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/kernel/drivers/platform/x86/nvidia-wmi-ec-backlight.ko
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/kernel/drivers/usb/typec/altmodes/typec_nvidia.ko
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/updates/dkms/nvidia-current.ko
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/updates/dkms/nvidia-current-modeset.ko
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/updates/dkms/nvidia-current-drm.ko
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/updates/dkms/nvidia-current-uvm.ko
+/usr/src/linux-headers-`uname -r`/scripts/sign-file sha256 ./MOK.priv ./MOK.der /lib/modules/$(uname -r)/updates/dkms/nvidia-current-peermem.ko
+```
+
 Import public key to system's MOK list:  
 ```
 mokutil --import MOK.der
 ``` 
 Create password for this MOK enrollment request.
-Reboot. Follow instructions to complete the MOK enrollment from UEFI console.
+Reboot. Follow instructions to complete the MOK enrollment from UEFI console.  
 
 // Install VirtualBox extension pack  
-
 ```
 vboxmanage --version
 curl https://download.virtualbox.org/virtualbox/<version number>/Oracle_VM_VirtualBox_Extension_Pack-<version number>.vbox-extpack
