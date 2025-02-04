@@ -35,7 +35,12 @@ docker build -t "impacket:latest" .
 // Impacket - Run docker container with binded share folder from local desktop
 ```  
 docker run -it --rm -v ~/Desktop/share:/shared impacket:latest
-```  
+```
+
+// Impacket - Enumerate SIDs
+```
+impacket-lookupsid anonymous@10.10.10.10
+```
 
 // AMSI bypass - https://pentestlaboratories.com/2021/05/17/amsi-bypass-methods/  
 ```
