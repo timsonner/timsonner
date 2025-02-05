@@ -261,7 +261,7 @@ hashcat -a 0 -m 5600 hash.txt /usr/share/wordlists/rockyou.txt
 
 // Find files with SUID flag set
 ```
-ind / -type f -perm -04000 -ls 2>/dev/null
+find / -type f -perm -04000 -ls 2>/dev/null
 ```
 
 // Get location of process - Windows  
@@ -271,6 +271,11 @@ wmic process where ProcessId=<process_id> get ExecutablePath
 
 // new way
 Get-Process -Id 11076 | Select-Object -ExpandProperty Path
+```
+
+// get capabilities  
+```
+getcap -r / 2> /dev/null
 ```
 
 // Find SMB shares on Windows host - Linux  
