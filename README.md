@@ -258,7 +258,12 @@ hashcat -a 0 -m 5600 hash.txt /usr/share/wordlists/rockyou.txt
 // Get info of process - Windows  
  
      tasklist /FI "PID eq <process_id>"  
-     
+
+// Find files with SUID flag set
+```
+ind / -type f -perm -04000 -ls 2>/dev/null
+```
+
 // Get location of process - Windows  
 ```powershell
 // old way
