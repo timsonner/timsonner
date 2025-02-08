@@ -9,10 +9,26 @@
  https://gist.github.com  
 
 // PSExec64  
+https://download.sysinternals.com/files/PSTools.zip  
 ```
 PsExec64.exe -s -i "\full\path\to\exe\create-kernel-service.exe"
 ```
-   
+
+
+// Allow remote logon to WinRM service (PowerShell) 
+```
+New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "LocalAccountTokenFilterPolicy" -Value 1 -PropertyType "DWORD"
+```
+-or-
+```
+winrm quickconfig
+```
+
+// evil-winrm
+```
+evil-winrm -i x.x.x.x -u shellton -p spazzword -P 5985
+```
+
 // The Harvester  as Docker container  
 ```  
 docker run --rm -it --mount type=bind,source="$HOME/.theHarvester/api-keys.yaml",target="/app/api-keys.yaml" --entrypoint "/root/.local/bin/theHarvester" theharvester -d linkedin.com -b all
