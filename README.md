@@ -24,13 +24,30 @@ Enable WinRM
 ```powershell
 Enable-PSRemoting -SkipNetworkProfileCheck -Force
 ```
-// Allow remote logon to WinRM service (PowerShell) 
-```
+// Allow remote logon to WinRM service
+```powershell
 New-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" -Name "LocalAccountTokenFilterPolicy" -Value 1 -PropertyType "DWORD"
 ```
 -or-
 ```
 winrm quickconfig
+```
+
+Get/Set WinRM service property to auto-start 
+```powershell
+Get-Service WinRM
+Set-Service WinRM -StartMode Automatic
+```
+
+Kick holes in firewall
+```powershell
+New-NetFirewallRule -DisplayName "Open Port 5985 - WinRM" -Direction Inbound -Protocol TCP -LocalPort 5985 -Action Allow
+New-NetFirewallRule -DisplayName "Open Port 5986 - WinRM" -Direction Inbound -Protocol TCP -LocalPort 5986 -Action Allow
+```
+
+Add target WinRM user to local 'Remote Management Users' group
+```powershell
+Add-LocalGroupMember -Group "Remote Management Users" -Member <username>
 ```
 
 // evil-winrm
